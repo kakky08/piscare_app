@@ -23,7 +23,7 @@ class PostRecipeController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
