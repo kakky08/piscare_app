@@ -13,7 +13,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return view('articles.recipe');
     }
 
     /**
