@@ -6,7 +6,7 @@
             <main class="col-md-9 col-lg-10 px-md-4 py-4">
 
                 {{-- タイトル --}}
-                <h1 class="h2">投稿レシピ</h1>
+                <h1 class="h2">お店検索</h1>
 
                 {{-- 検索フォーム --}}
                 <form class="row">
