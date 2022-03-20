@@ -8,6 +8,7 @@ import './bootstrap'
 import Vue from 'vue'
 import TestComponent from './components/TestComponent'
 import MaterialComponent from './components/MaterialComponent'
+import PostRecipeLike from './components/PostRecipeLike'
 
 window.Vue = require('vue');
 
@@ -34,6 +35,7 @@ const app = new Vue({
     el: '#app',
     components:{
         TestComponent,
-        MaterialComponent
+        MaterialComponent,
+        PostRecipeLike,
     }
 });
