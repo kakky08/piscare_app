@@ -9,6 +9,7 @@ import Vue from 'vue'
 import TestComponent from './components/TestComponent'
 import MaterialComponent from './components/MaterialComponent'
 import PostRecipeLike from './components/PostRecipeLike'
+import DatepickerComponent from './components/DatepickerComponent';
 
 window.Vue = require('vue');
 
@@ -37,5 +38,6 @@ const app = new Vue({
         TestComponent,
         MaterialComponent,
         PostRecipeLike,
+        DatepickerComponent,
     }
 });
