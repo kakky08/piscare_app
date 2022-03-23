@@ -14,6 +14,7 @@
 <script>
 import datepicker from "vuejs-datepicker";
 import { ja } from "vuejs-datepicker/dist/locale";
+import moment from "moment";
 
 export default {
     components: {
@@ -31,8 +32,11 @@ export default {
     },
     methods: {
         change: function(date) {
-            select = moment(date).format('YYYY-MM-DD');
-            console.log('クリックされました' + select);
+            // 受け取ったデータを変換
+            let select = moment(date).format('YYYY-MM-DD')
+            console.log(select);
+            // カレンダービューに移動
+            location.href= '/calendar/' + select;
         }
     },
     data() {
