@@ -23,3 +23,7 @@ Route::resource('recipe', 'RecipeController', ['only' => ['index', 'create', 'ed
 Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
