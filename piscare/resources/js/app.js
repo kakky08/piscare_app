@@ -4,12 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import './bootstrap'
-import Vue from 'vue'
-import TestComponent from './components/TestComponent'
-import MaterialComponent from './components/MaterialComponent'
-import PostRecipeLike from './components/PostRecipeLike'
-import DatepickerComponent from './components/DatepickerComponent';
+require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -34,10 +29,4 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    components:{
-        TestComponent,
-        MaterialComponent,
-        PostRecipeLike,
-        DatepickerComponent,
-    }
 });
