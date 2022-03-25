@@ -11,6 +11,7 @@
 |
 */
 
+//TODO ミドルウェアの記述
 Route::get('/', function () {
     return view('welcome');
 });
