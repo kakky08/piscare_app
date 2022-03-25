@@ -12,6 +12,12 @@
 */
 
 //TODO ミドルウェアの記述
+
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,6 +25,15 @@ Route::get('/', function () {
 Route::get('/test', 'HotpepperController@index');
 Route::get('/calendar', 'CalendarController@index');
 Route::get('/calendar/{select}', 'CalendarController@show');
+
+// マイページ
+Route::resource('mypage', 'MyPageController', ['only' => ['index',]]);
+Route::resource('user', 'UserController', ['only' => ['show', ]]);
+Route::get('/{id}/followings', 'UserController@followings')->name('followings');
+Route::get('/{id}/followers', 'UserController@followers')->name('followers');
+Route::put('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
+Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
+
 
 Route::resource('recipe', 'RecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);

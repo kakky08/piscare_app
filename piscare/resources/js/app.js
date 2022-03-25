@@ -5,8 +5,13 @@
  */
 
 require('./bootstrap');
+import Vue from 'vue'
+import DatepickerComponent from './components/DatepickerComponent'
+import MaterialComponent from './components/MaterialComponent'
+import PostRecipeLike from './components/PostRecipeLike'
+import TestComponent from './components/TestComponent'
+import FollowButton from './components/FollowButton'
 
-window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,4 +34,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    components: {
+        DatepickerComponent,
+        PostRecipeLike,
+        TestComponent,
+        MaterialComponent,
+        FollowButton,
+    }
 });
