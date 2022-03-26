@@ -78,6 +78,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}" class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-1"></i>Googleで登録
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

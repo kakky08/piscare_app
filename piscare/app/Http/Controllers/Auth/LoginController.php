@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Providers\RouteServiceProvider;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request as HttpRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
-
+use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -31,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
 
 
@@ -43,5 +41,28 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function handleProviderCallback(Request $request, $provider)
+    {
+        $providerUser = Socialite::driver($provider)->stateless()->user();
+        $user = User::where('email', $providerUser->getEmail())->first();
+
+        if($user)
+        {
+            $this->guard()->login($user, true);
+            return $this->sendLoginResponse($request);
+        }
+
+
+        $email = $providerUser->getEmail();
+        $token = $providerUser->token;
+
+        return redirect()->route('register.{provider}',compact('provider', 'email', 'token'));
     }
 }
