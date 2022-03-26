@@ -17,6 +17,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+Auth::routes();
+Route::prefix('login')->name('login.')->group(function(){
+    Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
+    Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
+});
+
+Route::prefix("register")->name('register.')->group(function(){
+    Route::get('/{provider}', 'Auth\RegisterController@indexProviderUserRegistrationForm')->name('{provider}');
+    Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,6 +50,6 @@ Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'crea
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
