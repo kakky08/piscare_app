@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRecipeNameRequest;
 use App\PostRecipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class PostRecipeController extends Controller
+class PostRecipeNameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,7 @@ class PostRecipeController extends Controller
      */
     public function index()
     {
-        return view('articles.postRecipe');
+        return view('postRecipe.NameRegister');
     }
 
     /**
@@ -24,7 +26,7 @@ class PostRecipeController extends Controller
      */
     public function create()
     {
-
+        return view('postRecipe.NameRegister');
     }
 
     /**
@@ -33,9 +35,16 @@ class PostRecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRecipeNameRequest $request, PostRecipe $postRecipe)
     {
-        //
+        $postRecipe->fill($request->all());
+        $postRecipe->user_id = $request->user()->id;
+        $postRecipe->save();
+
+        $postId = $postRecipe->id;
+
+
+        return redirect()->route('postRecipe.edit', ['postRecipe' => $postId]);
     }
 
     /**
@@ -55,14 +64,9 @@ class PostRecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostRecipe $postRecipe)
+    public function edit($id)
     {
-
-        $title = $postRecipe->title;
-        $postId = $postRecipe->id;
-        $materials = null;
-
-        return view('articles.postCreate', compact('title', 'postId', 'materials'));
+        //
     }
 
     /**

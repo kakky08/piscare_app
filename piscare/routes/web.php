@@ -14,6 +14,9 @@
 //TODO ミドルウェアの記述
 
 // use Illuminate\Routing\Route;
+
+use App\Http\Controllers\MaterialCreateController;
+use App\Http\Controllers\PostRecipeNameController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,7 +52,7 @@ Route::resource('recipe', 'RecipeController', ['only' => ['index', 'create', 'ed
 Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-
-
+Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
+Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit']]);
 
 Route::get('/home', 'HomeController@index')->name('home');

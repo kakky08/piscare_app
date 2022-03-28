@@ -13,7 +13,7 @@
                             <p class="col-4 text-center bg-success text-white rounded-pill py-2">分量</p>
                         </div>
 
-                    <material-component></material-component>
+                    <material-component :post-id={{ $postId }} :materials={{ $materials }}></material-component>
 
                     </div>
                 </div>

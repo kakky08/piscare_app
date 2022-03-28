@@ -2164,7 +2164,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['postId'],
   data: function data() {
     return {
       texts: [{
@@ -60398,6 +60400,8 @@ var render = function () {
         : _vm._e(),
       _vm._v(" "),
       _c("p", { staticClass: "border-bottom mb-4" }),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.postId))]),
       _vm._v(" "),
       _c("div", { staticClass: "d-grid gap-2 col-6 mx-auto" }, [
         _c(
