@@ -6,12 +6,12 @@
 
 require('./bootstrap');
 import Vue from 'vue'
+import RecordBreakfast from './components/RecordBreakfast'
 import DatepickerComponent from './components/DatepickerComponent'
 import MaterialComponent from './components/MaterialComponent'
 import PostRecipeLike from './components/PostRecipeLike'
 import TestComponent from './components/TestComponent'
 import FollowButton from './components/FollowButton'
-
 
 /**
  * The following block of code may be used to automatically register your
@@ -40,5 +40,6 @@ const app = new Vue({
         TestComponent,
         MaterialComponent,
         FollowButton,
+        RecordBreakfast,
     }
 });

@@ -15,6 +15,7 @@
         @for ($i = 0; $i < $restaurants['results_returned']; $i++)
             <tr>
                 <td><a href="{{{ $restaurants['shop'][$i]['urls']['pc'] }}}">{{{ $restaurants['shop'][$i]['name'] }}}</a></td>
+                <td><img src="{{{$restaurants['shop'][$i]['photo']['pc']['m'] }}}" alt="">
                 <td>{{{ $restaurants['shop'][$i]['open'] }}}</td>
             </tr>
         @endfor

@@ -56,3 +56,4 @@ Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create'
 Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit']]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/test'. 'HotpepperController@index')->name('test');

@@ -5,38 +5,42 @@
         <div class="row justify-content-center">
             <main class="col-md-9 col-lg-10 px-md-4 py-4">
 
-                <p>{{ $test }}</p>
+                <p>{{ $date->format('Y-m-d') }}</p>
+                <record-breakfast
+
+                    {{-- flag-record-date='@json($records->isRecord(Auth::user(), $date))' --}}
+                >
+                </record-breakfast>
                 <div class="card">
-                <div class="card-header">Test vuejs-datepicker</div>
-                <div class="card-body">
-                    <form method="POST" action="">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">Start Date</label>
-                            <div class="col-md-6">
-                                <datepicker-component name="start_date" defaultdate="{{ \Carbon\Carbon::now()->format("Y/m/d") }}"  />
+                    <div class="card-header">Test </div>
+                    <div class="card-body">
+                        <form method="POST" action="">
+                            @csrf
+                            <div class="form-group row">
+                                <label for="date" class="col-md-4 col-form-label text-md-right">Start Date</label>
+                                <div class="col-md-6">
+                                    <datepicker-component name="start_date" defaultdate="{{ \Carbon\Carbon::now()->format("Y/m/d") }}"  />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="date2" class="col-md-4 col-form-label text-md-right">End Date</label>
-                            <div class="col-md-6">
-                                <datepicker-component name="end_date" defaultdate="{{ \Carbon\Carbon::now()->addYears("1")->addDay("-1")->format("Y/m/d") }}"/>
+                            <div class="form-group row">
+                                <label for="date2" class="col-md-4 col-form-label text-md-right">End Date</label>
+                                <div class="col-md-6">
+                                    <datepicker-component name="end_date" defaultdate="{{ \Carbon\Carbon::now()->addYears("1")->addDay("-1")->format("Y/m/d") }}"/>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <input type="text" name="dummy" style="display:none;">
-                                <button type="submit" class="btn btn-primary">
-                                    登録
-                                </button>
+                            <div class="form-group row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <input type="text" name="dummy" style="display:none;">
+                                    <button type="submit" class="btn btn-primary">
+                                        登録
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-                </div>
-            </div>
                 <div class="card">
                     <div class="card-header text-center">
                         <a href="{{ url('calendar/?date=' . $calendar->getPreviousMonth()) }}"
