@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\PostRecipe;
+use App\Material;
 use Illuminate\Http\Request;
 
-class PostRecipeController extends Controller
+class MaterialCreateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PostRecipeController extends Controller
      */
     public function index()
     {
-        return view('articles.postRecipe');
+        //
     }
 
     /**
@@ -55,14 +55,12 @@ class PostRecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostRecipe $postRecipe)
+    public function edit($materialCreate)
     {
+        $materials = Material::where('postRecipe_id', $materialCreate)->get();
+        $postId = $materialCreate;
 
-        $title = $postRecipe->title;
-        $postId = $postRecipe->id;
-        $materials = null;
-
-        return view('articles.postCreate', compact('title', 'postId', 'materials'));
+        return view('postRecipe.materialCreate', compact('materials', 'postId'));
     }
 
     /**

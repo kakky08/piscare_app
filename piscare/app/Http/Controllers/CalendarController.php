@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Calendar\CalendarView;
+use App\Calendar\Record;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -28,9 +30,11 @@ class CalendarController extends Controller
 
         $calendar = new CalendarView($date);
         // カーボンでデータの受け渡しテスト
-        $test = new Carbon('today');
+        $date = new Carbon('today');
+        $records = Record::all();
 
-        return view('calendar', compact('calendar', 'test'));
+
+        return view('calendar', compact('calendar', 'date', 'records'));
     }
 
     public function show(Request $request, $select)
@@ -51,12 +55,12 @@ class CalendarController extends Controller
         $calendar = new CalendarView($date);
 
         // カーボンでデータの受け渡しテスト
-        $test = $select;
+        $date = $select;
 
         // TODO データベースから記録データを取得する処理
         // TODO indexとshowで使っている共通コードをまとめる
 
-        return view('calendar', compact('calendar', 'test'));
+        return view('calendar', compact('calendar', 'date'));
     }
 
 }

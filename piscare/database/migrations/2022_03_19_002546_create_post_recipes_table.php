@@ -15,6 +15,11 @@ class CreatePostRecipesTable extends Migration
     {
         Schema::create('post_recipes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('title', 50);
+            $table->string('image')->nullable();
+            $table->integer('people')->nullable();
             $table->timestamps();
         });
     }

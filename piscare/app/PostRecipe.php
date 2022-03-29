@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PostRecipe extends Model
 {
+    protected $fillable = [
+        'title',
+        'image',
+        'people',
+
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');

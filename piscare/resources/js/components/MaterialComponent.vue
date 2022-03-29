@@ -10,6 +10,7 @@
         </div>
         <button type="button" class="btn btn-primary col-auto mb-5" @click="add" v-if="!isTextMax">＋行を追加する</button>
         <p class="border-bottom mb-4"></p>
+        <p>{{postId}}</p>
         <div class="d-grid gap-2 col-6 mx-auto">
             <button type="button" class="btn btn-success col-auto" @click="onSubmit">保存して閉じる</button>
         </div>
@@ -18,9 +19,10 @@
 
 <script>
     export default {
+        props:['postId', 'materials'],
         data() {
             return {
-                texts: [{material: '', quantity: ''}],
+                texts: [{material: 'mmmm', quantity: ''}],
                 maxTextCount: 30,
             }
         },
@@ -45,12 +47,12 @@
                     });
             }
         },
-         computed: {
-        isTextMax() {
+        computed: {
+            isTextMax() {
 
-            return (this.texts.length >= this.maxTextCount);
+                return (this.texts.length >= this.maxTextCount);
 
+            }
         }
-    }
     }
 </script>
