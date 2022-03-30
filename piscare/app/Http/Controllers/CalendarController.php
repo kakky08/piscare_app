@@ -62,12 +62,21 @@ class CalendarController extends Controller
         $calendar = new CalendarView($date);
 
         // カーボンでデータの受け渡しテスト
-        $date = $select;
+        $date =  new Carbon($select);
+        $date = $date->format('Ymd');
+
+        // その日の記録があるかを検索
+        $record = Record::where('user_id', Auth::id())->where('date', $date)->first();
+
+        $action = 'store';
+        if ($record) {
+            $action =  'update';
+        }
 
         // TODO データベースから記録データを取得する処理
         // TODO indexとshowで使っている共通コードをまとめる
 
-        return view('calendar', compact('calendar', 'date'));
+        return view('calendar', compact('calendar', 'date', 'record', 'action'));
     }
 
 }
