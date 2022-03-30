@@ -2142,66 +2142,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/MaterialComponent.vue?vue&type=script&lang=js& ***!
   \****************************************************************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['postId', 'materials'],
-  data: function data() {
-    return {
-      texts: [{
-        material: 'mmmm',
-        quantity: ''
-      }],
-      maxTextCount: 30
-    };
-  },
-  methods: {
-    add: function add() {
-      this.texts.push({
-        material: '',
-        quantity: ''
-      });
-    },
-    del: function del(index) {
-      this.texts.splice(index, 1);
-    },
-    onSubmit: function onSubmit() {
-      var url = '/';
-      var params = {
-        texts: this.texts
-      };
-      axios.post(url, params).then(function (response) {//  成功時
-      })["catch"](function (error) {//  失敗時
-      });
-    }
-  },
-  computed: {
-    isTextMax: function isTextMax() {
-      return this.texts.length >= this.maxTextCount;
-    }
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /var/www/resources/js/components/MaterialComponent.vue: Unexpected character '™'. (39:29)\n\n\u001b[0m \u001b[90m 37 |\u001b[39m     methods\u001b[33m:\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 38 |\u001b[39m         onSort (event) {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m             console\u001b[33m.\u001b[39mlog(event™)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 40 |\u001b[39m         }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 41 |\u001b[39m         add() {\u001b[0m\n\u001b[0m \u001b[90m 42 |\u001b[39m             \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtexts\u001b[33m.\u001b[39mpush({ material\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m\u001b[33m,\u001b[39m quantity\u001b[33m:\u001b[39m \u001b[32m''\u001b[39m})\u001b[0m\n    at instantiate (/var/www/node_modules/@babel/parser/lib/index.js:72:32)\n    at constructor (/var/www/node_modules/@babel/parser/lib/index.js:358:12)\n    at Parser.raise (/var/www/node_modules/@babel/parser/lib/index.js:3334:19)\n    at Parser.getTokenFromCode (/var/www/node_modules/@babel/parser/lib/index.js:2679:16)\n    at Parser.nextToken (/var/www/node_modules/@babel/parser/lib/index.js:2018:10)\n    at Parser.next (/var/www/node_modules/@babel/parser/lib/index.js:1922:10)\n    at Parser.parseIdentifierName (/var/www/node_modules/@babel/parser/lib/index.js:14011:10)\n    at Parser.parseIdentifier (/var/www/node_modules/@babel/parser/lib/index.js:13978:23)\n    at Parser.parseExprAtom (/var/www/node_modules/@babel/parser/lib/index.js:13012:27)\n    at Parser.parseExprSubscripts (/var/www/node_modules/@babel/parser/lib/index.js:12567:23)\n    at Parser.parseUpdate (/var/www/node_modules/@babel/parser/lib/index.js:12546:21)\n    at Parser.parseMaybeUnary (/var/www/node_modules/@babel/parser/lib/index.js:12517:23)\n    at Parser.parseMaybeUnaryOrPrivate (/var/www/node_modules/@babel/parser/lib/index.js:12311:61)\n    at Parser.parseExprOps (/var/www/node_modules/@babel/parser/lib/index.js:12318:23)\n    at Parser.parseMaybeConditional (/var/www/node_modules/@babel/parser/lib/index.js:12288:23)\n    at Parser.parseMaybeAssign (/var/www/node_modules/@babel/parser/lib/index.js:12241:21)\n    at /var/www/node_modules/@babel/parser/lib/index.js:12199:39\n    at Parser.allowInAnd (/var/www/node_modules/@babel/parser/lib/index.js:14265:12)\n    at Parser.parseMaybeAssignAllowIn (/var/www/node_modules/@babel/parser/lib/index.js:12199:17)\n    at Parser.parseExprListItem (/var/www/node_modules/@babel/parser/lib/index.js:13970:18)\n    at Parser.parseCallExpressionArguments (/var/www/node_modules/@babel/parser/lib/index.js:12793:22)\n    at Parser.parseCoverCallAndAsyncArrowHead (/var/www/node_modules/@babel/parser/lib/index.js:12690:29)\n    at Parser.parseSubscript (/var/www/node_modules/@babel/parser/lib/index.js:12615:19)\n    at Parser.parseSubscripts (/var/www/node_modules/@babel/parser/lib/index.js:12584:19)\n    at Parser.parseExprSubscripts (/var/www/node_modules/@babel/parser/lib/index.js:12573:17)\n    at Parser.parseUpdate (/var/www/node_modules/@babel/parser/lib/index.js:12546:21)\n    at Parser.parseMaybeUnary (/var/www/node_modules/@babel/parser/lib/index.js:12517:23)\n    at Parser.parseMaybeUnaryOrPrivate (/var/www/node_modules/@babel/parser/lib/index.js:12311:61)\n    at Parser.parseExprOps (/var/www/node_modules/@babel/parser/lib/index.js:12318:23)\n    at Parser.parseMaybeConditional (/var/www/node_modules/@babel/parser/lib/index.js:12288:23)\n    at Parser.parseMaybeAssign (/var/www/node_modules/@babel/parser/lib/index.js:12241:21)\n    at Parser.parseExpressionBase (/var/www/node_modules/@babel/parser/lib/index.js:12177:23)\n    at /var/www/node_modules/@babel/parser/lib/index.js:12171:39\n    at Parser.allowInAnd (/var/www/node_modules/@babel/parser/lib/index.js:14259:16)\n    at Parser.parseExpression (/var/www/node_modules/@babel/parser/lib/index.js:12171:17)\n    at Parser.parseStatementContent (/var/www/node_modules/@babel/parser/lib/index.js:14699:23)");
 
 /***/ }),
 
@@ -60465,75 +60408,86 @@ var render = function () {
   return _c(
     "div",
     [
-      _vm._l(_vm.texts, function (text, index) {
-        return _c("div", { key: text.id }, [
-          _c("div", { staticClass: "row justify-content-around mb-4" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-light col-1", attrs: { type: "button" } },
-              [_vm._v("▲")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.texts[_vm.material],
-                  expression: "texts[material]",
-                },
-              ],
-              staticClass: "form-control col-4",
-              attrs: { type: "text", placeholder: "材料・調味料" },
-              domProps: { value: _vm.texts[_vm.material] },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.texts, _vm.material, $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.texts[_vm.quantity],
-                  expression: "texts[quantity]",
-                },
-              ],
-              staticClass: "form-control col-4",
-              attrs: { type: "text", placeholder: "分量" },
-              domProps: { value: _vm.texts[_vm.quantity] },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.texts, _vm.quantity, $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-light col-1",
-                attrs: { type: "button" },
+      _c(
+        "draggable",
+        {
+          attrs: { options: _vm.options, hendle: ".handle" },
+          on: { end: _vm.onSort },
+          model: {
+            value: _vm.itmes,
+            callback: function ($$v) {
+              _vm.itmes = $$v
+            },
+            expression: "itmes",
+          },
+        },
+        _vm._l(_vm.texts, function (text, index) {
+          return _c("div", { key: text.id }, [
+            _c("div", { staticClass: "row justify-content-around mb-4" }, [
+              _c("i", { staticClass: "fas fa-heart fa-xs mr-1 col-1 handler" }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.texts[_vm.material],
+                    expression: "texts[material]",
+                  },
+                ],
+                staticClass: "form-control col-4",
+                attrs: { type: "text", placeholder: "材料・調味料" },
+                domProps: { value: _vm.texts[_vm.material] },
                 on: {
-                  click: function ($event) {
-                    return _vm.del(index)
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.texts, _vm.material, $event.target.value)
                   },
                 },
-              },
-              [_vm._v("×")]
-            ),
-          ]),
-        ])
-      }),
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.texts[_vm.quantity],
+                    expression: "texts[quantity]",
+                  },
+                ],
+                staticClass: "form-control col-4",
+                attrs: { type: "text", placeholder: "分量" },
+                domProps: { value: _vm.texts[_vm.quantity] },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.texts, _vm.quantity, $event.target.value)
+                  },
+                },
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light col-1",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.del(index)
+                    },
+                  },
+                },
+                [_vm._v("×")]
+              ),
+            ]),
+          ])
+        }),
+        0
+      ),
       _vm._v(" "),
       !_vm.isTextMax
         ? _c(
@@ -60563,7 +60517,7 @@ var render = function () {
         ),
       ]),
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -75886,15 +75840,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/RecordBreakfast.vue ***!
   \*****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RecordBreakfast_vue_vue_type_template_id_7c724fef___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RecordBreakfast.vue?vue&type=template&id=7c724fef& */ "./resources/js/components/RecordBreakfast.vue?vue&type=template&id=7c724fef&");
 /* harmony import */ var _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecordBreakfast.vue?vue&type=script&lang=js& */ "./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -75924,7 +75877,7 @@ component.options.__file = "resources/js/components/RecordBreakfast.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
