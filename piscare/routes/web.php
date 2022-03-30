@@ -36,7 +36,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', 'HotpepperController@index');
-Route::get('/calendar', 'CalendarController@index');
+Route::get('/calendar', 'CalendarController@index')->name('calendar.index');
 Route::get('/calendar/{select}', 'CalendarController@show');
 
 // マイページ
@@ -57,3 +57,18 @@ Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['creat
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test'. 'HotpepperController@index')->name('test');
+
+Route::resource('record', 'RecordController', ['only' => ['store', 'update', 'destroy']]);
+
+Route::prefix("breakfast")->name('breakfast.')->group(function () {
+    Route::post('/', 'RecordController@storeBreakfast')->name('store');
+    Route::post('update', 'RecordController@updateBreakfast')->name('update');
+});
+Route::prefix("lunch")->name('lunch.')->group(function () {
+    Route::post('/', 'RecordController@storeLunch')->name('store');
+    Route::post('update', 'RecordController@updateLunch')->name('update');
+});
+Route::prefix("dinner")->name('dinner.')->group(function () {
+    Route::post('/', 'RecordController@storeDinner')->name('store');
+    Route::post('update', 'RecordController@updateDinner')->name('update');
+});

@@ -17,10 +17,11 @@ class CreateRecordsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('date', 8)->unique();
-            $table->integer('flag_breakfast')->default(0);
-            $table->integer('flag_lunch')->default(0);
-            $table->integer('flag_dinner')->default(0);
+            $table->string('date', 8);
+            $table->string('flag_breakfast')->default(0);
+            $table->string('flag_lunch')->default(0);
+            $table->string('flag_dinner')->default(0);
+            $table->integer('flag_count')->default(0);
             $table->timestamps();
         });
     }
