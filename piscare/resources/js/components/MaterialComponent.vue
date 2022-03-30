@@ -36,7 +36,7 @@
         },
         methods: {
             onSort (event) {
-                console.log(event™);
+                console.log(event);
             },
             add() {
                 this.texts.push({ material: '', quantity: ''})

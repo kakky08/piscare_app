@@ -3,66 +3,48 @@
         <button
             type="button"
             class="btn m-0 p-1 shadow-none"
+            name="breakfast"
+            value="{ breakfast }"
+            @click="click"
         >
-        <i class="fa fa-fish"
-            @click="clickBreakfast"/>
+        <i class="fa fa-fish col-md-1"
+            :class="{'fish-color':this.breakfast}"
+        />
         </button>
+        <p>{{ endpoint }}</p>
+        <p>{{isRecord}}</p>
     </div>
 </template>
 
 <script>
     export default{
-        props:{
-            // チェックしているかどうか
-            flagBreakfast:{
-                type: Boolean,
-                    default: false,
-            },
-            // データが存在しているかどうか
-            flagRecordDate:{
-                type: Boolean,
-                default: false,
-            },
-            // ルート先
-            endpoint:{
-                type:String
-            },
-            createpoint:{
-                type:String
-            },
-        },
-        data(){
+        props:[
+            "isRecord",
+            "flagBreakfast",
+            "endpoint",
+        ],
+        deta(){
             return{
-                isBreakfast: this.flagBreakfast,
+                isRecord: this.initialIsRecord,
+                breakfast: this.flagBreakfast,
             }
         },
-        methods:{
-            clickBreakfast(){
-                if(this.flagRecordDate === true && this.isBreakfast === true){
-                    this.deleteRecord()
-                    return
-                }
-                if(this.flagRecordDate === true && this.isBreakfast === false){
-                    this.updateRecord()
-                    return
-                }
-                if(this.flagRecordDate === false && this.isBreakfast === false){
-                    this.createRecord()
-                    return
-                }
+        methods: {
+            click() {
+                this.isRecord
+                ? this.update()
+                : this.update()
             },
-            async deleteRecord(){
-                const response = await axios.delete(this.endpoint)
-                this.isBreakfast = false
+            async index() {
+                await axios.get(this.endpoint);
             },
-            async updateRecord(){
-                const response = await axios.put(this.endpoint)
-                this.isBreakfast = ture
+            async create(){
+                const response = await axios.post(this.endpoint);
             },
-            async createRecord(){
-                const response = await axios.post(this.createpoint)
-                this.isBreakfast = ture
-            }
-        }
+            update(){
+                axios.put(this.endpoint);
+
+            },
+        },
     }
 </script>

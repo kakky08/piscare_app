@@ -4,13 +4,9 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <main class="col-md-9 col-lg-10 px-md-4 py-4">
-
-                <p>{{ $date->format('Y-m-d') }}</p>
-                <record-breakfast
-
-                    {{-- flag-record-date='@json($records->isRecord(Auth::user(), $date))' --}}
-                >
-                </record-breakfast>
+                <p>{{ $action }}</p>
+                <p>{{ $date}}</p>
+                @include('components.recordButton')
                 <div class="card">
                     <div class="card-header">Test </div>
                     <div class="card-body">

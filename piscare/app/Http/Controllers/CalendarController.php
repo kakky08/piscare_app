@@ -29,12 +29,19 @@ class CalendarController extends Controller
         }
 
         $calendar = new CalendarView($date);
-        // カーボンでデータの受け渡しテスト
+        // Carbonで日時を取得
         $date = new Carbon('today');
-        $records = Record::all();
+        $date = $date->format('Ymd');
 
+        // その日の記録があるかを検索
+        $record = Record::where('user_id', Auth::id())->where('date', $date)->first();
 
-        return view('calendar', compact('calendar', 'date', 'records'));
+        $action = 'store';
+        if ($record) {
+            $action =  'update';
+        }
+
+        return view('calendar', compact('calendar', 'date', 'action', 'record'));
     }
 
     public function show(Request $request, $select)

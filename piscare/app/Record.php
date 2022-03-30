@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Record extends Model
 {
+    protected $fillable = [
+        'user_id',
+        'date',
+        'flag_breakfast',
+        'flag_lunch',
+        'flag_dinner',
+    ];
+
     public function user():BelongsTo
     {
         return $this->belongsTo('App\User');
     }
 
-    public function isRecord(?User $user, $date)
-    {
-        $is_record = Record::where('user_id', $user->id)->where('date', $date)->first();
-        return $is_record
-            ? true
-            : false;
-    }
 }
