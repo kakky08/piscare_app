@@ -20,6 +20,22 @@ use App\Http\Controllers\PostRecipeNameController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
+// ログイン
+
+// 新規登録
+
+// ホーム
+
+// マイページ
+
+// 投稿レシピ一覧
+
+// レシピ一覧
+
+// レシピ投稿
+
+
 Auth::routes();
 Route::prefix('login')->name('login.')->group(function(){
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
@@ -48,12 +64,13 @@ Route::put('user/{id}/follow', 'UserController@follow')->name('follow')->middlew
 Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
 
 
+// レシピ投稿
 Route::resource('recipe', 'RecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
-Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit']]);
+Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test'. 'HotpepperController@index')->name('test');
