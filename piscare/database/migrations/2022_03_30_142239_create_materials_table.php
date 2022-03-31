@@ -18,7 +18,7 @@ class CreateMaterialsTable extends Migration
             $table->bigInteger('postRecipe_id')->unsigned();
             $table->foreign('postRecipe_id')->references('id')->on('post_recipes')->onDelete('cascade');
             $table->text('materialName');
-            $table->text('quentity');
+            $table->text('quantity');
             $table->timestamps();
         });
     }

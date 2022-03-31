@@ -2167,19 +2167,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
   },
-  props: ['postId', 'materials'],
+  props: ['postId'],
   data: function data() {
     return {
       texts: [{
-        material: 'mmmm',
+        material: '',
         quantity: ''
       }],
       maxTextCount: 30,
@@ -2202,11 +2199,16 @@ __webpack_require__.r(__webpack_exports__);
       this.texts.splice(index, 1);
     },
     onSubmit: function onSubmit() {
-      var url = '/';
+      var _this = this;
+
+      var url = this.endpoint;
+      var formData = new f();
+      formData.appned('texts', this.texts);
       var params = {
         texts: this.texts
       };
-      axios.post(url, params).then(function (response) {//  成功時
+      axios.patch(url, formData).then(function (response) {
+        location.href = _this.endpoint;
       })["catch"](function (error) {//  失敗時
       });
     }
@@ -2353,36 +2355,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      texts: [{
-        name: '',
-        email: ''
-      }]
-    };
-  },
-  methods: {
-    add: function add() {
-      this.texts.push({
-        name: '',
-        email: ''
-      });
-    },
-    del: function del() {
-      this.texts.splice(index, 1);
-    }
-  }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -64150,11 +64123,11 @@ var render = function () {
           attrs: { options: _vm.options, hendle: ".handle" },
           on: { end: _vm.onSort },
           model: {
-            value: _vm.itmes,
+            value: _vm.texts,
             callback: function ($$v) {
-              _vm.itmes = $$v
+              _vm.texts = $$v
             },
-            expression: "itmes",
+            expression: "texts",
           },
         },
         _vm._l(_vm.texts, function (text, index) {
@@ -64163,46 +64136,28 @@ var render = function () {
               _c("i", { staticClass: "fas fa-heart fa-xs mr-1 col-1 handler" }),
               _vm._v(" "),
               _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.texts[_vm.material],
-                    expression: "texts[material]",
-                  },
-                ],
+                attrs: {
+                  type: "hidden",
+                  name: "materials[" + index + "][postId]",
+                },
+                domProps: { value: _vm.postId },
+              }),
+              _vm._v(" "),
+              _c("input", {
                 staticClass: "form-control col-4",
-                attrs: { type: "text", placeholder: "材料・調味料" },
-                domProps: { value: _vm.texts[_vm.material] },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.texts, _vm.material, $event.target.value)
-                  },
+                attrs: {
+                  type: "text",
+                  placeholder: "材料・調味料",
+                  name: "materials[" + index + "][materialName]",
                 },
               }),
               _vm._v(" "),
               _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.texts[_vm.quantity],
-                    expression: "texts[quantity]",
-                  },
-                ],
                 staticClass: "form-control col-4",
-                attrs: { type: "text", placeholder: "分量" },
-                domProps: { value: _vm.texts[_vm.quantity] },
-                on: {
-                  input: function ($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.texts, _vm.quantity, $event.target.value)
-                  },
+                attrs: {
+                  type: "text",
+                  placeholder: "分量",
+                  name: "materials[" + index + "][quantity]",
                 },
               }),
               _vm._v(" "),
@@ -64236,22 +64191,6 @@ var render = function () {
             [_vm._v("＋行を追加する")]
           )
         : _vm._e(),
-      _vm._v(" "),
-      _c("p", { staticClass: "border-bottom mb-4" }),
-      _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.postId))]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-grid gap-2 col-6 mx-auto" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success col-auto",
-            attrs: { type: "button" },
-            on: { click: _vm.onSubmit },
-          },
-          [_vm._v("保存して閉じる")]
-        ),
-      ]),
     ],
     1
   )
@@ -64359,93 +64298,20 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._l(_vm.texts, function (text, index) {
-        return _c("div", { key: text.id }, [
-          _c("div", { staticClass: "row justify-content-around mb-4" }, [
-            _c(
-              "button",
-              { staticClass: "btn btn-light col-1", attrs: { type: "button" } },
-              [_vm._v("▲")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: text.name,
-                  expression: "text.name",
-                },
-              ],
-              staticClass: "form-control col-4",
-              attrs: { type: "text", placeholder: "材料・調味料" },
-              domProps: { value: text.name },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(text, "name", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: text.email,
-                  expression: "text.email",
-                },
-              ],
-              staticClass: "form-control col-4",
-              attrs: { type: "text", placeholder: "分量" },
-              domProps: { value: text.email },
-              on: {
-                input: function ($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(text, "email", $event.target.value)
-                },
-              },
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-light col-1",
-                attrs: { type: "button" },
-                on: {
-                  click: function ($event) {
-                    return _vm.del(index)
-                  },
-                },
-              },
-              [_vm._v("×")]
-            ),
-          ]),
-        ])
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary col-auto mb-5",
-          attrs: { type: "button" },
-          on: { click: _vm.add },
-        },
-        [_vm._v("＋行を追加する")]
-      ),
-    ],
-    2
-  )
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("input", {
+        attrs: { type: "text", placeholder: "test", name: "material" },
+      }),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -81908,14 +81774,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************!*\
   !*** ./resources/js/components/MaterialComponent.vue ***!
   \*******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MaterialComponent_vue_vue_type_template_id_1f3cc5bb___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MaterialComponent.vue?vue&type=template&id=1f3cc5bb& */ "./resources/js/components/MaterialComponent.vue?vue&type=template&id=1f3cc5bb&");
 /* harmony import */ var _MaterialComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MaterialComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MaterialComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _MaterialComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _MaterialComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -81945,7 +81812,7 @@ component.options.__file = "resources/js/components/MaterialComponent.vue"
 /*!********************************************************************************!*\
   !*** ./resources/js/components/MaterialComponent.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82049,14 +81916,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/RecordBreakfast.vue ***!
   \*****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RecordBreakfast_vue_vue_type_template_id_7c724fef___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RecordBreakfast.vue?vue&type=template&id=7c724fef& */ "./resources/js/components/RecordBreakfast.vue?vue&type=template&id=7c724fef&");
 /* harmony import */ var _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecordBreakfast.vue?vue&type=script&lang=js& */ "./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RecordBreakfast_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -82086,7 +81954,7 @@ component.options.__file = "resources/js/components/RecordBreakfast.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

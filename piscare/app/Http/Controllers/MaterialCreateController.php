@@ -12,9 +12,13 @@ class MaterialCreateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request)
+    {/*
+        $requests = $request;
+        $materials = $request->material;
+        $quantities = $request->quantity;
+        return view('materialtest', compact('materials', 'quantities', 'requests')); */
+        return view('postRecipe.materialCreate');
     }
 
     /**
@@ -33,9 +37,26 @@ class MaterialCreateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Material $material)
     {
-        //
+        /*  $material->material = $request->material;
+        $material->quantity = $request->quantity; */
+        // dd($request);
+
+        $materials = $request->materials;
+        foreach ($materials as $material) {
+            Material::create([
+                'postRecipe_id' => $material['postId'],
+                'materialName' => $material['materialName'],
+                'quantity' => $material['quantity'],
+            ]);
+        }
+
+
+
+
+        // $postId = $request->postId;
+        return redirect()->route('home');
     }
 
     /**
@@ -70,9 +91,11 @@ class MaterialCreateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Material $material)
     {
-        //
+        $material->fill($request->all());
+        $material->save();
+        return redirect()->route('/');
     }
 
     /**

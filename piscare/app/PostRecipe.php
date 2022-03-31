@@ -25,10 +25,10 @@ class PostRecipe extends Model
         return $this->belongsToMany('APP\User', 'post_recipe_likes')->withTimestamps();
     }
 
-    public function isPostLikedBy(?User $user):bool
+    public function isPostLikedBy(?User $user): bool
     {
         return $user
-            ?(bool)$this->post_recipe_likes->where('id', $user->id)->count()
+            ? (bool)$this->post_recipe_likes->where('id', $user->id)->count()
             : false;
     }
 }
