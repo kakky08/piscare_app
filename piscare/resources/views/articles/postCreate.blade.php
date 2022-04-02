@@ -46,18 +46,16 @@
                                 </a>
                             </div>
                             <h3 class="border-bottom">作り方</h3>
-                            <div class="row justify-content-around">
-                                <div class="col-5">
-                                    <img src="https://placehold.jp/320x240.png" alt="">
+                            <a href="{{ route('editProcedure.edit', ['editProcedure' => $postId])}}">作り方</a>
+                                <div class="row justify-content-around">
+                                    <div class="col-5">
+                                        <img src="https://placehold.jp/320x240.png" alt="">
+                                    </div>
+                                    <div class="col-5">
+                                        <label for="exampleFormControlTextarea1" class="form-label">作り方の説明</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                                    </div>
                                 </div>
-                                <div class="col-5">
-                                    <label for="exampleFormControlTextarea1" class="form-label">作り方の説明</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
-                                </div>
-                            </div>
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <button class="btn btn-success" type="button">＋行を追加する</button>
-                            </div>
                         </div>
                     </div>
                 </div>
