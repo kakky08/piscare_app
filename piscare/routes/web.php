@@ -71,7 +71,7 @@ Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit',
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
 Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
-Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store' ]]);
+Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/test'. 'HotpepperController@index')->name('test');

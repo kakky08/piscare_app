@@ -14,6 +14,7 @@ class EditProcedureController extends Controller
      */
     public function index()
     {
+        return view('sumple');
     }
 
     /**
