@@ -2443,12 +2443,176 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuedraggable */ "./node_modules/vuedraggable/dist/vuedraggable.umd.js");
+/* harmony import */ var vuedraggable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuedraggable__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    draggable: vuedraggable__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  props: ['postId'],
+  data: function data() {
+    return {
+      texts: [{
+        photo: '',
+        procedure: ''
+      }],
+      isEnter: false,
+      url: '',
+      maxTextCount: 30,
+      options: {
+        animation: 200
+      },
+      images: []
+    };
+  },
+  methods: {
+    dragEnter: function dragEnter() {
+      this.isEnter = true;
+    },
+    dragLeave: function dragLeave() {
+      this.isEnter = false;
+    },
+    dropFile: function dropFile() {
+      console.log(event.dataTransfer.files[0]);
+      var image = event.dataTransfer.files[0];
+      this.url = URL.createObjectURL(image);
+      this.images = _toConsumableArray(event.dataTransfer.files);
+      this.images.forEach(function (image) {
+        var form = new FormData();
+        form.append('image', image);
+        axios.post('url', form).then(function (response) {
+          console.log(response.data);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      });
+      this.isEnter = false;
+    },
+    uploadFile: function uploadFile(event) {
+      var files = event.target.files;
+
+      if (files.length !== 1 || files[0].type.indexOf("image") !== 0) {
+        return;
+      }
+
+      this.readImage(files[0]);
+    },
+    readImage: function readImage(file) {
+      var reader = new FileReader();
+      reader.onload = this.loadImage;
+      reader.readAsDataURL(file);
+    },
+    loadImage: function loadImage(e) {
+      var image = new Image();
+      image.src = e.target.result;
+      this.image = image;
+    },
+    onChange: function onChange(event) {
+      var images = event.target.files;
+
+      if (images[0].type.indexOf("image") !== 0) {
+        return;
+      }
+
+      this.readImage(images[0]);
+    },
+    onSort: function onSort(event) {
+      console.log(event);
+    },
+    add: function add() {
+      this.texts.push({
+        photo: '',
+        procedure: ''
+      });
+    },
+    del: function del(index) {
+      this.texts.splice(index, 1);
+    },
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      var url = this.endpoint;
+      var formData = new f();
+      formData.appned('texts', this.texts);
+      var params = {
+        texts: this.texts
+      };
+      axios.patch(url, formData).then(function (response) {
+        location.href = _this.endpoint;
+      })["catch"](function (error) {//  失敗時
+      });
+    }
+  },
+  computed: {
+    isTextMax: function isTextMax() {
+      return this.texts.length >= this.maxTextCount;
+    }
+  }
+});
 
 /***/ }),
 
@@ -64514,20 +64678,159 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _c(
+        "draggable",
+        {
+          attrs: { options: _vm.options, hendle: ".handle" },
+          on: { end: _vm.onSort },
+          model: {
+            value: _vm.texts,
+            callback: function ($$v) {
+              _vm.texts = $$v
+            },
+            expression: "texts",
+          },
+        },
+        _vm._l(_vm.texts, function (text, index) {
+          return _c("div", { key: text.id, staticClass: "mb-5" }, [
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "procedures[" + index + "][postId]",
+              },
+              domProps: { value: _vm.postId },
+            }),
+            _vm._v(" "),
+            _c("input", {
+              attrs: {
+                type: "hidden",
+                name: "procedures[" + index + "][order]",
+              },
+              domProps: { value: index },
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "row justify-content-around" }, [
+              _c("p", { staticClass: "col-1" }, [_vm._v(_vm._s(index))]),
+              _vm._v(" "),
+              _c("i", { staticClass: "fas fa-heart fa-xs mr-1 col-1 handler" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4 " }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "drop_area",
+                    class: { enter: _vm.isEnter },
+                    on: {
+                      dragenter: _vm.dragEnter,
+                      dragleave: _vm.dragLeave,
+                      dragover: function ($event) {
+                        $event.preventDefault()
+                      },
+                      drop: function ($event) {
+                        $event.preventDefault()
+                        return _vm.dropFile.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "\n                            ドロップエリア\n                            "
+                    ),
+                    _vm.url
+                      ? _c("div", [_c("img", { attrs: { src: _vm.url } })])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("input", {
+                      ref: "preview",
+                      refInFor: true,
+                      staticClass: "image-input",
+                      attrs: { type: "file", title: "" },
+                      on: { change: _vm.uploadFile },
+                    }),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-4" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "form-label",
+                    attrs: { label: "", for: "exampleFormControlTextarea1" },
+                  },
+                  [_vm._v("作り方の説明")]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "procedures[" + index + "][procedure]",
+                    id: "exampleFormControlTextarea1",
+                    rows: "5",
+                  },
+                }),
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-light col-1",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      return _vm.del(index)
+                    },
+                  },
+                },
+                [_vm._v("×")]
+              ),
+            ]),
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "d-grid gap-2 col-6 mx-auto mb-5" }, [
+        !_vm.isTextMax
+          ? _c(
+              "button",
+              {
+                staticClass: "btn btn-success",
+                attrs: { type: "button" },
+                on: { click: _vm.add },
+              },
+              [_vm._v("＋行を追加する")]
+            )
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "ul",
+          _vm._l(_vm.images, function (image) {
+            return _c("li", { key: image.id }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(image.name) +
+                  "\n                " +
+                  _vm._s(_vm.url) +
+                  "\n            "
+              ),
+            ])
+          }),
+          0
+        ),
+      ]),
+      _vm._v(" "),
+      _vm.url ? _c("div", [_c("img", { attrs: { src: _vm.url } })]) : _vm._e(),
+    ],
+    1
+  )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("input", {
-        attrs: { type: "text", placeholder: "test", name: "material" },
-      }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
