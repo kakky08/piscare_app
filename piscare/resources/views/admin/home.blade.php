@@ -1,6 +1,13 @@
 @extends('layouts.admin')
 
 @section('content')
+<!-- フラッシュメッセージ -->
+        @if (session('successMessage'))
+            <div class="successMessage">
+                {{ session('successMessage') }}
+            </div>
+        @endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
