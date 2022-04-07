@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -80,5 +81,26 @@ class RecipeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function like(Request $request, Recipe $recipe)
+    {
+        $recipe->likes()->detach($request->user()->id);
+        $recipe->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $recipe->id,
+            'countLikes' => $recipe->count_likes,
+        ];
+    }
+
+    public function unlike(Request $request, Recipe $recipe)
+    {
+        $recipe->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $recipe->id,
+            'countLikes' => $recipe->count_likes,
+        ];
     }
 }

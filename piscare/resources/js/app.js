@@ -6,13 +6,14 @@
 
 require('./bootstrap');
 import Vue from 'vue'
-import RecordBreakfast from './components/RecordBreakfast'
 import DatepickerComponent from './components/DatepickerComponent'
+import FollowButton from './components/FollowButton'
 import MaterialComponent from './components/MaterialComponent'
 import PostRecipeLike from './components/PostRecipeLike'
-import TestComponent from './components/TestComponent'
-import FollowButton from './components/FollowButton'
 import ProcedureComponent from './components/ProcedureComponent'
+import RecipeLike from './components/RecipeLike'
+import RecordBreakfast from './components/RecordBreakfast'
+import TestComponent from './components/TestComponent'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -36,11 +37,12 @@ const app = new Vue({
     el: '#app',
     components: {
         DatepickerComponent,
-        PostRecipeLike,
-        TestComponent,
-        MaterialComponent,
         FollowButton,
-        RecordBreakfast,
+        MaterialComponent,
+        PostRecipeLike,
         ProcedureComponent,
+        RecipeLike,
+        RecordBreakfast,
+        TestComponent,
     }
 });
