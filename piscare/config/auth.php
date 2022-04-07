@@ -47,12 +47,13 @@ return [
             'hash' => false,
         ],
         'user' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'users'
         ],
         'admin' => [
             'driver' => 'session',
-            'provider' => 'admins'
+            'provider' => 'admins',
+            'hash' => false,
         ]
     ],
 
