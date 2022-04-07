@@ -79,6 +79,16 @@
                             <i class="fab fa-google mr-1"></i>Googleでログイン
                         </a>
                     </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a href="{{ route('login.{provider}', ['provider' => 'github']) }}" class="btn btn-block btn-secondary">
+                            <i class="fab fa-github mr-1"></i>GitHubでログイン
+                        </a>
+                    </div>
+                    <div class="d-grid gap-2 col-8 mx-auto">
+                        <a href="{{ route('login.{provider}', ['provider' => 'twitter']) }}" class="btn btn-block btn-primary">
+                            <i class="fab fa-twitter mr-1"></i>Twitterでログイン
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
