@@ -85,7 +85,7 @@ Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->midd
 
 
 // レシピ投稿
-Route::resource('recipe', 'RecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::resource('recipes', 'RecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
@@ -113,3 +113,14 @@ Route::prefix("dinner")->name('dinner.')->group(function () {
 
 Route::get('/rakuten', 'RakutenController@get_rakuten_items')->name('rakuten');
 Route::get('/rakuten/index', 'RakutenController@index')->name('rakuten.index');
+
+/**
+ * いいね機能のルーティング
+ */
+// RecipeLike
+Route::prefix('recipes')->name('recipes.')->group(function()
+{
+    Route::put('/{recipe}/like', 'RecipeController@like')->name('like')->middleware('auth');
+    Route::delete('/{recipe}/like', 'RecipeController@unlike')->name('unlike')->middleware('auth');
+
+});

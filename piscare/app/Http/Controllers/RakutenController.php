@@ -145,6 +145,7 @@ class RakutenController extends Controller
                         {
                             RecipeMaterial::create([
                                 'recipe_id' => $result['recipeId'],
+                                'order' => $key,
                                 'name' => $material,
                             ]);
                         }

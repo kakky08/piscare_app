@@ -2337,6 +2337,126 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecipeLike.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RecipeLike.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    initiallsLikedBy: {
+      type: Boolean,
+      "default": false
+    },
+    initialCountLikes: {
+      type: Number,
+      "default": 0
+    },
+    authorized: {
+      type: Boolean,
+      "default": false
+    },
+    endpoint: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      isLikedBy: this.initiallsLikedBy,
+      countLikes: this.initialCountLikes
+    };
+  },
+  methods: {
+    clickLike: function clickLike() {
+      if (!this.authorized) {
+        alert('いいね機能はログイン中のみ使用できます');
+        return;
+      }
+
+      this.isLikedBy ? this.unlike() : this.like();
+    },
+    like: function like() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.put(_this.endpoint);
+
+              case 2:
+                response = _context.sent;
+                _this.isLikedBy = true;
+                _this.countLikes = response.data.countLikes;
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    unlike: function unlike() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios["delete"](_this2.endpoint);
+
+              case 2:
+                response = _context2.sent;
+                _this2.isLikedBy = false;
+                _this2.countLikes = response.data.countLikes;
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RecordBreakfast.vue?vue&type=script&lang=js& ***!
@@ -64620,6 +64740,43 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      { staticClass: "btn m-0 p-1 shadow-none", attrs: { type: "button" } },
+      [
+        _c("i", {
+          staticClass: "fas fa-heart mr-1 text-danger",
+          class: { "text-danger": this.isLikedBy },
+          on: { click: _vm.clickLike },
+        }),
+      ]
+    ),
+    _vm._v("\n    " + _vm._s(_vm.countLikes) + "\n"),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecordBreakfast.vue?vue&type=template&id=7c724fef&":
 /*!******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/RecordBreakfast.vue?vue&type=template&id=7c724fef& ***!
@@ -81986,19 +82143,21 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_RecordBreakfast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/RecordBreakfast */ "./resources/js/components/RecordBreakfast.vue");
-/* harmony import */ var _components_DatepickerComponent__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/DatepickerComponent */ "./resources/js/components/DatepickerComponent.vue");
+/* harmony import */ var _components_DatepickerComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/DatepickerComponent */ "./resources/js/components/DatepickerComponent.vue");
+/* harmony import */ var _components_FollowButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/FollowButton */ "./resources/js/components/FollowButton.vue");
 /* harmony import */ var _components_MaterialComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/MaterialComponent */ "./resources/js/components/MaterialComponent.vue");
 /* harmony import */ var _components_PostRecipeLike__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/PostRecipeLike */ "./resources/js/components/PostRecipeLike.vue");
-/* harmony import */ var _components_TestComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/TestComponent */ "./resources/js/components/TestComponent.vue");
-/* harmony import */ var _components_FollowButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/FollowButton */ "./resources/js/components/FollowButton.vue");
-/* harmony import */ var _components_ProcedureComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/ProcedureComponent */ "./resources/js/components/ProcedureComponent.vue");
+/* harmony import */ var _components_ProcedureComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/ProcedureComponent */ "./resources/js/components/ProcedureComponent.vue");
+/* harmony import */ var _components_RecipeLike__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/RecipeLike */ "./resources/js/components/RecipeLike.vue");
+/* harmony import */ var _components_RecordBreakfast__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/RecordBreakfast */ "./resources/js/components/RecordBreakfast.vue");
+/* harmony import */ var _components_TestComponent__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/TestComponent */ "./resources/js/components/TestComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
 
 
 
@@ -82028,13 +82187,14 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
-    DatepickerComponent: _components_DatepickerComponent__WEBPACK_IMPORTED_MODULE_2__["default"],
-    PostRecipeLike: _components_PostRecipeLike__WEBPACK_IMPORTED_MODULE_4__["default"],
-    TestComponent: _components_TestComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    DatepickerComponent: _components_DatepickerComponent__WEBPACK_IMPORTED_MODULE_1__["default"],
+    FollowButton: _components_FollowButton__WEBPACK_IMPORTED_MODULE_2__["default"],
     MaterialComponent: _components_MaterialComponent__WEBPACK_IMPORTED_MODULE_3__["default"],
-    FollowButton: _components_FollowButton__WEBPACK_IMPORTED_MODULE_6__["default"],
-    RecordBreakfast: _components_RecordBreakfast__WEBPACK_IMPORTED_MODULE_1__["default"],
-    ProcedureComponent: _components_ProcedureComponent__WEBPACK_IMPORTED_MODULE_7__["default"]
+    PostRecipeLike: _components_PostRecipeLike__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ProcedureComponent: _components_ProcedureComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
+    RecipeLike: _components_RecipeLike__WEBPACK_IMPORTED_MODULE_6__["default"],
+    RecordBreakfast: _components_RecordBreakfast__WEBPACK_IMPORTED_MODULE_7__["default"],
+    TestComponent: _components_TestComponent__WEBPACK_IMPORTED_MODULE_8__["default"]
   }
 });
 
@@ -82498,6 +82658,76 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProcedureComponent_vue_vue_type_template_id_4a2d47d6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ProcedureComponent_vue_vue_type_template_id_4a2d47d6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/RecipeLike.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/RecipeLike.vue ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RecipeLike.vue?vue&type=template&id=2b63f720& */ "./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720&");
+/* harmony import */ var _RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RecipeLike.vue?vue&type=script&lang=js& */ "./resources/js/components/RecipeLike.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/RecipeLike.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/RecipeLike.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/RecipeLike.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./RecipeLike.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecipeLike.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_RecipeLike_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./RecipeLike.vue?vue&type=template&id=2b63f720& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/RecipeLike.vue?vue&type=template&id=2b63f720&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_RecipeLike_vue_vue_type_template_id_2b63f720___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
