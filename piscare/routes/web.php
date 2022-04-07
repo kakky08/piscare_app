@@ -112,3 +112,4 @@ Route::prefix("dinner")->name('dinner.')->group(function () {
 });
 
 Route::get('/rakuten', 'RakutenController@get_rakuten_items')->name('rakuten');
+Route::get('/rakuten/index', 'RakutenController@index')->name('rakuten.index');
