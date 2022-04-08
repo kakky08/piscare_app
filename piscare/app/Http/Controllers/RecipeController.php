@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
+use App\Subcatergory;
+use App\Subsubcatergory;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -14,7 +16,10 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return view('articles.recipe');
+        $recipes = Recipe::orderBy('created_at', 'desc')->paginate(12);
+        $subcategories = Subcatergory::all()->sortBy('id');
+        $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
     }
 
     /**
@@ -75,12 +80,40 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($recipe)
     {
-        //
+
+    }
+
+    /**
+     * カテゴリ検索
+     *
+     * @param  int  $recipe
+     * @return \Illuminate\Http\Response
+     */
+    public function category($recipe)
+    {
+        $recipes = Recipe::where('search_category_id', 'LIKE', "$recipe%")->orderBy('created_at', 'desc')->paginate(12);;
+        $subcategories = Subcatergory::all()->sortBy('id');
+        $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
+    }
+
+    /**
+     * カテゴリ検索
+     *
+     * @param  int  $recipe
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orderBy('created_at', 'desc')->paginate(12);;
+        $subcategories = Subcatergory::all()->sortBy('id');
+        $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
     }
 
     public function like(Request $request, Recipe $recipe)
