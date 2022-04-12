@@ -115,11 +115,13 @@ Route::get('/rakuten', 'RakutenController@get_rakuten_items')->name('rakuten');
 Route::get('/rakuten/index', 'RakutenController@index')->name('rakuten.index');
 
 /**
- * いいね機能のルーティング
+ * レシピページに関するルーティング
  */
-// RecipeLike
 Route::prefix('recipes')->name('recipes.')->group(function()
 {
+    Route::get('/category/{recipe}/', 'RecipeController@category')->name('category')->middleware('auth');
+    Route::get('/search', 'RecipeController@search')->name('search')->middleware('auth');
+    /** いいね機能のルーティング **/
     Route::put('/{recipe}/like', 'RecipeController@like')->name('like')->middleware('auth');
     Route::delete('/{recipe}/like', 'RecipeController@unlike')->name('unlike')->middleware('auth');
 
