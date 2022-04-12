@@ -13,7 +13,6 @@ jobs:
     name: Deploy app to AWS Fargate
     runs-on: ubuntu-latest
 
-
     steps:
       - name: Configure aws credentials for prod
         # if: github.ref == 'refs/heads/main'
