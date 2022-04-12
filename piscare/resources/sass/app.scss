@@ -5,7 +5,104 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
+
+
+/*
+* カラー
+*/
+
+// 白
+$primary-color: #FFF;
+
+// 黄色
+$secondary-color: #FFE162;
+
+// グレー
+$sub-color: #EEE;
+
+// 緑
+$button-color: #91C483;
+
+// 赤
+$sub-button-color: #FF6464;
+
+/*
+* フォントカラー
+*/
+
+// 黒
+$font-color: #333;
+// 白
+$font-sub-color: #fff;
+
+
+/*
+* 魚の色
+*/
+$first-fish-color: #222;
+
+$second-fish-color: #333;
+
+$third-fish-color: #444;
+
+/*
+* 文字の大きさ
+*/
+$fontsize-nav: 1rem;
+
+*{
+    color: $font-color;
+    box-sizing: border-box;
+}
+
+.nav{
+    &-header {
+        background-color: $secondary-color;
+        padding: 0px 24px;
+    }
+    &-height {
+        height: 64px;
+
+    }
+    &-list{
+        height: 100%;
+        li {
+            a{
+                font-size: $fontsize-nav;
+                color: $font-color;
+                display: block;
+                padding: calc((64px - 18px) / 2) 1rem;
+                &:hover{
+                    color: #666;
+                }
+            }
+        }
+    }
+}
+
+.sidebar{
+    background-color: $sub-color;
+    padding: 24px 8px;
+}
+
+
+.main{
+    padding: 24px 16px;
+}
+
+// ボタン
+.button-basic{
+    border-color: $button-color;
+    background-color: $button-color;
+    color: $font-sub-color;
+
+    &:hover{
+        opacity: 0.9;
+        color: $font-sub-color;
+    }
+}
+
 
 .fish-color{
     color:#1da1f2;
