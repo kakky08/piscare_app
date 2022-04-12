@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             {{-- サイドバー --}}
-            @include('components.recipeSidebar')
-            <main class="col-md-9 col-lg-10 px-md-4 py-4">
-                <div class="row justify-content-between">
+            @include('components.sidebar.recipe')
+            <main class="col-lg-10 main">
+                <div class="row justify-content-between col-lg-12">
                     {{-- タイトル --}}
-                    <h1 class="h2 col-10 mb-0">投稿レシピ</h1>
-                    <button type="button" class="btn btn-success col-2">新しいレシピを投稿する</button>
+                    <h1 class="h2 col-10 mb-0">レシピ</h1>
+                    <button type="button" class="btn col-2 button-basic">新しいレシピを投稿する</button>
                 </div>
                 {{-- ソート --}}
                 <ul class="nav">
