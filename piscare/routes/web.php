@@ -89,6 +89,17 @@ Route::prefix('profile')->name('profile.')->middleware('auth')->group(function()
     Route::get('/{name}/followers', 'ProfileController@followers')->name('followers');
     Route::post('/', 'RecordController@storeBreakfast')->name('store');
 });
+// 設定
+Route::prefix('settings')->name('settings.')->middleware('auth')->group(function()
+{
+    Route::get('/', 'SettingController@index')->name('index');
+});
+
+// プライバシー
+Route::prefix('privacy')->name('privacy.')->middleware('auth')->group(function () {
+    Route::get('/', 'PrivacyController@index')->name('index');
+});
+
 Route::resource('mypage', 'MyPageController', ['only' => ['index',]]);
 Route::resource('user', 'UserController', ['only' => ['show', ]]);
 Route::get('/{id}/followings', 'UserController@followings')->name('followings');
@@ -96,7 +107,7 @@ Route::get('/{id}/followers', 'UserController@followers')->name('followers');
 Route::put('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
 Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
 
-Route::get('setting', 'SettingController@index')->name('setting.index');
+
 
 
 // レシピ投稿

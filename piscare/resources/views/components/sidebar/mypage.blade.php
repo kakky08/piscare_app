@@ -14,12 +14,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('setting.index') }}">
+                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('settings.index') }}">
                     <h3 class="ml-2"><i class="fas fa-cog"></i>Setting</h3>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{-- {{  $page === 'privacy' ? 'active' : '' }} --}}" href="">
+                <a class="nav-link {{-- {{  $page === 'privacy' ? 'active' : '' }} --}}" href="{{ route('privacy.index') }}">
                     <h3 class="ml-2"><i class="fas fa-user-shield"></i>Privacy</h3>
                 </a>
             </li>
