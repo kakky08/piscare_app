@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,8 @@ class MyPageController extends Controller
     {
         $page = 'mypage';
         $user = Auth::user();
-        return view('articles.mypage', compact('page', 'user'));
+        $posts = $user->postRecipe->sortByDesc('created_at');
+        return view('mypage.mypage', compact('page', 'user', 'posts'));
     }
 
     /**
@@ -24,9 +26,9 @@ class MyPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+
     }
 
     /**
@@ -49,6 +51,14 @@ class MyPageController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function likes($id)
+    {
+        $user = User::where('id', $id)->first();
+        $posts = $user->likes->sortByDesc('created_at');
+        return view('mypage.mypage', compact('user', 'posts'));
+
     }
 
     /**

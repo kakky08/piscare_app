@@ -14,7 +14,8 @@ class PostRecipeController extends Controller
      */
     public function index()
     {
-        return view('articles.postRecipe');
+        $recipes = PostRecipe::paginate(12);
+        return view('postRecipe.postRecipe', compact('recipes'));
     }
 
     /**
