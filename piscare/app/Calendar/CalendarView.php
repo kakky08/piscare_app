@@ -87,7 +87,6 @@ class CalendarView {
             //週カレンダーviewの作成
             $week = new CalendarWeek($tmpDay, count($weeks));
             $weeks[] = $week;
-
             // 次の日を7日に設定
             $tmpDay->addDay(7);
         }

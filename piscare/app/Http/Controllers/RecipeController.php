@@ -49,9 +49,12 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($recipe)
     {
-        //
+        $recipe = Recipe::where('id', $recipe)->first();
+        $subcategories = Subcatergory::all()->sortBy('id');
+        $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        return view('recipes.detail', compact('recipe', 'subcategories', 'subsubcategories'));
     }
 
     /**
