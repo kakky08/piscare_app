@@ -26,16 +26,9 @@
     <body>
         <div id="app">
             @yield('header')
-            <div class="container-fluid spacing-reset">
-                <div class="row spacing-reset">
-                    <aside class="col-md-3 aside-layout">
-                        @yield('aside')
-                    </aside>
-                    <main class="col-md-9 main-layout">
-                        @yield('main')
-                    </main>
-                </div>
-            </div>
+            <main class=" main-layout">
+                @yield('main')
+            </main>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>
         <!-- JQuery -->
