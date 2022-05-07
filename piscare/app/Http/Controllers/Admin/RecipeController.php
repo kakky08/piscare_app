@@ -1,29 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Recipe;
 use App\RecipeMaterial;
 use App\Subcatergory;
 use App\Subsubcatergory;
 use RakutenRws_Client;
 
-class RakutenController extends Controller
+
+class RecipeController extends Controller
 {
-
-    public function index()
-    {
-        return view('admin.home');
-    }
-
-
-
     /**
      *
      *  楽天APIからカテゴリとレシピを取得し、DBに保存する処理
      *
      */
-    public function get_rakuten_items()
+    public function register()
     {
         $client = new RakutenRws_Client();
         define("RAKUTEN_APPLICATION_ID", config('app.rakuten_id'));
@@ -50,7 +44,8 @@ class RakutenController extends Controller
                 if ($result['parentCategoryId'] === '11' || $result['parentCategoryId'] === '32')
                 {
                     $categoryId = Subcatergory::where('categoryId', $result['categoryId'])->first();
-                    if(empty($categoryId))
+
+                    if (empty($categoryId))
                     {
                         Subcatergory::create([
                             'categoryId' => $result['categoryId'],
@@ -78,8 +73,9 @@ class RakutenController extends Controller
             foreach ($results['small'] as $key => $result)
             {
                 $subcategoryId = Subcatergory::where('categoryId', $result['parentCategoryId'])->first();
+
                 // 中カテゴリにparentCategoryIdがあれば実行
-                if(isset($subcategoryId))
+                if (isset($subcategoryId))
                 {
                     $is_subsubcategoryId = Subsubcatergory::where('categoryId', $result['categoryId'])->first();
                     // 小カテゴリにcategoryIdがなければ実行
@@ -113,6 +109,7 @@ class RakutenController extends Controller
             $response = $client->execute('RecipeCategoryRanking', array(
                 'categoryId' => $searchRecipe->searchRecipeId,
             ));
+
             if (!$response->isOk())
             {
                 return 'Error:' . $response->getMessage();
@@ -124,11 +121,11 @@ class RakutenController extends Controller
                 {
                     $recipeId = Recipe::where('recipe_id', $result['recipeId'])->first();
                     // レシピがなかったら実行
-                    if(empty($recipeId))
+                    if (empty($recipeId))
                     {
                         Recipe::create([
                             'recipe_id' => $result['recipeId'],
-                            'category_id' =>$searchRecipe->parentCategoryId,
+                            'category_id' => $searchRecipe->parentCategoryId,
                             'search_category_id' => $searchRecipe->searchCategoryId,
                             'title' => $result['recipeTitle'],
                             'url' => $result['recipeUrl'],
@@ -165,6 +162,7 @@ class RakutenController extends Controller
             $response = $client->execute('RecipeCategoryRanking', array(
                 'categoryId' => $searchRecipe->searchRecipeId,
             ));
+
             if (!$response->isOk())
             {
                 return 'Error:' . $response->getMessage();
@@ -172,6 +170,7 @@ class RakutenController extends Controller
             else
             {
                 $results = $response['result'];
+
                 foreach ($results as $result)
                 {
                     $recipeId = Recipe::where('recipe_id', $result['recipeId'])->first();
@@ -207,9 +206,7 @@ class RakutenController extends Controller
             sleep(1);
         }
 
-
-
-        return redirect()->route('rakuten.index')->with('successMessage', '登録に成功しました。');
-
+        return redirect()->route('admin.home')->with('successMessage', '登録に成功しました。');
     }
+
 }

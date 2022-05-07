@@ -59,7 +59,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        return redirect()->route('recipe.index');
+        return redirect()->route('home.index');
     }
 
     public function indexProviderUserRegistrationForm(Request $request, $provider)

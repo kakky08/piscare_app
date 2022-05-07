@@ -36,7 +36,7 @@ export default {
             let select = moment(date).format('YYYY-MM-DD')
             console.log(select);
             // カレンダービューに移動
-            location.href= '/calendar/' + select;
+            location.href= '/home/select/' + select;
         }
     },
     data() {

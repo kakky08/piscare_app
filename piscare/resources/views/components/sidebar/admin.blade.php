@@ -1,10 +1,7 @@
-{{-- <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-md-5"> --}}
+<nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-md-5">
 
-        <div class="row">
-            <p>ttt</p>
-            <p>ttt</p>
-        </div>
+
         <ul class="nav flex-column nav-pills nav-fill">
             <li class="nav-item">
                 <a class="nav-link{{--  {{  $page === 'home' ? 'active' : '' }} --}}" aria-current="page" href="{{ route('home.index') }}">
@@ -19,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('setting.index') }}">
+                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('settings.index') }}">
                     <h3 class="ml-2"><i class="fas fa-cog"></i>Setting</h3>
                 </a>
             </li>
@@ -34,5 +31,5 @@
                 </a>
             </li>
         </ul>
-   {{--  </div>
-</nav> --}}
+</div>
+</nav>

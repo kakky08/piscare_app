@@ -14,6 +14,8 @@ import ProcedureComponent from './components/ProcedureComponent'
 import RecipeLike from './components/RecipeLike'
 import RecordBreakfast from './components/RecordBreakfast'
 import TestComponent from './components/TestComponent'
+import IconRegister from './components/IconRegister'
+import ImageComponent from './components/ImageComponent'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -44,5 +46,7 @@ const app = new Vue({
         RecipeLike,
         RecordBreakfast,
         TestComponent,
+        IconRegister,
+        ImageComponent
     }
 });

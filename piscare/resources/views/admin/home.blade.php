@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('aside')
+    @include('components.sidebar.admin')
+@endsection
+
+@section('main')
 <!-- フラッシュメッセージ -->
         @if (session('successMessage'))
             <div class="successMessage">
@@ -27,4 +31,8 @@
         </div>
     </div>
 </div>
+<a class="btn auth-button" href="{{ route('admin.shops') }}">ショップ登録</a>
+<a class="btn auth-button" href="{{ route('admin.shopsArea') }}">エリア登録</a>
+<a class="btn auth-button" href="{{ route('admin.recipes') }}">レシピ登録</a>
+
 @endsection

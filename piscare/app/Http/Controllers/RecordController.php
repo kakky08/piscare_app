@@ -19,11 +19,12 @@ class RecordController extends Controller
     {
         $record = new Record();
         $record->user_id = Auth::id();
-        $record->date = $request->date;
+        $record->year_month = (string)$request->year_month;
+        $record->day = $request->day;
         $record->flag_breakfast ? $record->flag_breakfast = false : $record->flag_breakfast = true;
         $record->flag_count += 1;
         $record->save();
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 
 
@@ -34,11 +35,12 @@ class RecordController extends Controller
     {
         $record = new Record();
         $record->user_id = Auth::id();
-        $record->date = $request->date;
+        $record->year_month = $request->year_month;
+        $record->day = $request->day;
         $record->flag_lunch ? $record->flag_lunch = false : $record->flag_lunch = true;
         $record->flag_count += 1;
         $record->save();
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 
     /**
@@ -48,11 +50,12 @@ class RecordController extends Controller
     {
         $record = new Record();
         $record->user_id = Auth::id();
-        $record->date = $request->date;
+        $record->year_month = $request->year_month;
+        $record->day = $request->day;
         $record->flag_dinner ? $record->flag_dinner = false : $record->flag_dinner = true;
         $record->flag_count += 1;
         $record->save();
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 
 
@@ -61,18 +64,15 @@ class RecordController extends Controller
      */
     public function updateBreakfast(RecordUpdateRequest $request, Record $records)
     {
-        Validator::make($request->all(), [
-            'date' => [
-                Rule::unique('users')->ignore($request->date),
-            ],
-        ]);
-        $date = $request->date;
-        $record = Record::where('user_id', Auth::id())->where('date', $date)->first();
+        $year_month = $request->year_month;
+        $day = $request->day;
+        $record = Record::where('user_id', Auth::id())->where('year_month', $year_month)->where('day', $day)->first();
         if ($record->flag_breakfast)
         {
             $record->flag_breakfast = false;
             $record->flag_count -= 1;
-            if ($record->flag_count === 0) {
+            if ($record->flag_count === 0)
+            {
                 $record->destroy($record->id);
             }
         }
@@ -85,7 +85,7 @@ class RecordController extends Controller
         $record->save();
 
 
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 
     /**
@@ -93,20 +93,25 @@ class RecordController extends Controller
      */
     public function updateLunch(Request $request)
     {
-        $date = $request->date;
-        $record = Record::where('user_id', Auth::id())->where('date', $date)->first();
-        if ($record->flag_lunch) {
+        $year_month = $request->year_month;
+        $day = $request->day;
+        $record = Record::where('user_id', Auth::id())->where('year_month', $year_month)->where('day', $day)->first();
+        if ($record->flag_lunch)
+        {
             $record->flag_lunch = false;
             $record->flag_count -= 1;
-            if ($record->flag_count === 0) {
+            if ($record->flag_count === 0)
+            {
                 $record->destroy($record->id);
             }
-        } else {
+        }
+        else
+        {
             $record->flag_lunch = true;
             $record->flag_count += 1;
         }
         $record->save();
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 
     /**
@@ -114,19 +119,24 @@ class RecordController extends Controller
      */
     public function updateDinner(Request $request)
     {
-        $date = $request->date;
-        $record = Record::where('user_id', Auth::id())->where('date', $date)->first();
-        if ($record->flag_dinner) {
+        $year_month = $request->year_month;
+        $day = $request->day;
+        $record = Record::where('user_id', Auth::id())->where('year_month', $year_month)->where('day', $day)->first();
+        if ($record->flag_dinner)
+        {
             $record->flag_dinner = false;
             $record->flag_count -= 1;
-            if ($record->flag_count === 0) {
+            if ($record->flag_count === 0)
+            {
                 $record->destroy($record->id);
             }
-        } else {
+        }
+        else
+        {
             $record->flag_dinner = true;
             $record->flag_count += 1;
         }
         $record->save();
-        return redirect()->route('calendar.index');
+        return redirect()->route('home.select', $request->year_month . '-' . $request->day);
     }
 }

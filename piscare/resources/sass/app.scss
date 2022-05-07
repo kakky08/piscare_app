@@ -4,9 +4,6 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-// @import '~bootstrap/scss/bootstrap';
-
 
 /*
 * カラー
@@ -27,6 +24,9 @@ $button-color: #91C483;
 // 赤
 $sub-button-color: #FF6464;
 
+$fish-first-color: #62daff;
+$fish-second-color: #628eff;
+$fish-third-color: #ff6262;
 /*
 * フォントカラー
 */
@@ -34,7 +34,7 @@ $sub-button-color: #FF6464;
 // 黒
 $font-color: #333;
 // 白
-$font-sub-color: #fff;
+$white-color: #fff;
 
 
 /*
@@ -47,15 +47,49 @@ $second-fish-color: #333;
 $third-fish-color: #444;
 
 /*
+* ブランドカラー
+*/
+// twitter
+$twitter-color: #1DA1F2;
+
+// google
+$google-color: #DB4437;
+
+$github-color: #161415;
+
+/*
 * 文字の大きさ
 */
 $fontsize-nav: 1rem;
 
 *{
-    color: $font-color;
+    // color: $font-color;
     box-sizing: border-box;
 }
 
+.spacing-reset {
+    padding: 0;
+    margin: 0;
+}
+
+.container-spacing{
+    padding-top: 1rem;
+}
+
+.aside-layout {
+    background-color: $sub-color;
+    padding: 24px 16px;
+    height: calc(100vh - 64px);
+}
+
+
+.main-layout {
+    padding: 3rem 1.5rem 2rem;
+}
+
+.header-color{
+    background-color: $secondary-color;
+}
 .nav{
     &-header {
         background-color: $secondary-color;
@@ -74,40 +108,216 @@ $fontsize-nav: 1rem;
                 display: block;
                 padding: calc((64px - 18px) / 2) 1rem;
                 &:hover{
-                    color: #666;
+                    color: $button-color;
                 }
             }
         }
     }
 }
 
-.sidebar{
-    background-color: $sub-color;
-    padding: 24px 8px;
+/*
+* auth関連
+*/
+
+.auth{
+    &-header{
+        margin-bottom: 4rem;
+    }
+    &-title{
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 3rem;
+    }
+    &-card{
+        &-body{
+            padding: 3rem;
+        }
+    }
+
+    &-form{
+
+        &-group{
+            margin-bottom: 2rem;
+            &:last-child{
+                margin-bottom: 3rem;
+            }
+        }
+
+    }
+
+    &-button{
+        padding: 0.5rem 0;
+        color: $white-color;
+        background-color: $button-color;
+
+        &:hover {
+            background-color: $secondary-color;
+            color: $font-color;
+        }
+
+        &-social{
+            margin-bottom: 2rem;
+            &:hover {
+                background-color: $secondary-color;
+                color: $font-color;
+            }
+
+            &-link{
+                padding: 0.5rem 0;
+                color: $white-color;
+                &:hover {
+                    background-color: $secondary-color;
+                }
+            }
+
+            &-icon{
+                margin-right: 1rem;
+            }
+
+        }
+
+        &-google{
+            background-color: $google-color;
+            &:hover{
+                color: $google-color;
+            }
+        }
+        &-github {
+            background-color: $github-color;
+            &:hover {
+                color: $github-color;
+            }
+        }
+        &-twitter {
+            background-color: $twitter-color;
+            &:hover {
+                color: $twitter-color;
+            }
+        }
+    }
+
 }
 
 
-.main{
-    padding: 24px 16px;
+.page-title{
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
+.card-style{
+    width: 18rem;
+    padding: 1rem;
+    margin-bottom: 3rem;
+
+    &-image{
+        object-fit: fill;
+        height: 12rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &-body{
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    &-title{
+        flex-grow: 1;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+    }
+
+    &-text{
+        margin-bottom: 1.5rem;
+    }
+
+    &-button{
+        color: $white-color;
+        background-color: $button-color;
+        margin-top: auto;
+
+        &:hover {
+            background-color: $secondary-color;
+            color: $font-color;
+        }
+
+    }
+}
 // ボタン
 .button-basic{
     border-color: $button-color;
     background-color: $button-color;
-    color: $font-sub-color;
+    color: $white-color;
 
     &:hover{
         opacity: 0.9;
-        color: $font-sub-color;
+        color: $white-color;
     }
 }
 
 
 .fish-color{
-    color:#1da1f2;
+        color: #ccc;
+    &-first{
+        color: $fish-first-color;
+    }
+    &-second{
+        color: $fish-second-color;
+    }
+    &-third{
+        color: $fish-third-color;
+    }
 }
 
-.red{
-    color:#1da1f2;
+
+.calender{
+    &-button-group{
+        margin-bottom: 2rem;
+
+        p{
+            margin-bottom: 0;
+            font-size: 1.4rem;
+        }
+    }
+    &-button{
+        background-color: $button-color;
+        color: $white-color;
+
+        &:hover {
+            background-color: $secondary-color;
+            color: $font-color;
+        }
+    }
+    &-table-row{
+        height: 80px
+    }
+    &-table-header{
+        text-align: center;
+        margin-bottom: none;
+    }
+    &-table-data{
+        min-width: 80px;
+    }
+    &-fish-icon{
+        text-align: center;
+    }
+}
+
+.record-button-group{
+    margin-bottom: 2rem;
+}
+
+.shop-search{
+    &-form{
+        margin-bottom: 2rem;
+    }
+    &-button{
+        background-color: $button-color;
+        color: $white-color;
+
+        &:hover{
+            background-color: $secondary-color;
+            color: $white-color;
+        }
+    }
 }

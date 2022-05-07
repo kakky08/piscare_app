@@ -66,60 +66,35 @@ Route::prefix('admin')->name('admin.')->group(function(){
 Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function () {
     Route::post('/logout', 'Admin\LoginController@logout')->name('logout');
     Route::get('/home', 'Admin\HomeController@index')->name('home');
+    Route::get('/shops', 'Admin\ShopController@register')->name('shops');
+    Route::get('/shopsArea', 'Admin\ShopController@registerArea')->name('shopsArea');
+    Route::get('/recipes', 'Admin\RecipeController@register')->name('recipes');
+
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * 楽天レシピ取得に関するルーティング
+ */
 
-Route::get('/test', 'HotpepperController@index');
+Route::prefix('rakuten')->name('rakuten')->middleware('auth:admin')->group(function () {
+    Route::get('/', 'RakutenController@get_rakuten_items');
+    Route::get('/index', 'RakutenController@index')->name('.index');
+});
 
 /**
  * マイページに関するルーティング
  */
-Route::get('/calendar', 'CalendarController@index')->name('calendar.index');
-Route::get('/calendar/{select}', 'CalendarController@show');
 
-// プロフィール
-Route::prefix('profile')->name('profile.')->middleware('auth')->group(function()
-{
-    Route::get('/{name}', 'ProfileController@show')->name('show');
-    Route::get('/{name}/likes', 'ProfileController@likes')->name('likes');
-    Route::get('/{name}/followings', 'ProfileController@followings')->name('followings');
-    Route::get('/{name}/followers', 'ProfileController@followers')->name('followers');
-    Route::post('/', 'RecordController@storeBreakfast')->name('store');
-});
-// 設定
-Route::prefix('settings')->name('settings.')->middleware('auth')->group(function()
-{
-    Route::get('/', 'SettingController@index')->name('index');
+
+// Homeに関するルーティング
+
+Route::prefix('home')->name('home.')->group(function () {
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::get('/{move}', 'HomeController@moveMonth')->name('move');
+    Route::get('/select/{select}', 'HomeController@selectDay')->name('select');
 });
 
-// プライバシー
-Route::prefix('privacy')->name('privacy.')->middleware('auth')->group(function () {
-    Route::get('/', 'PrivacyController@index')->name('index');
-});
-
-Route::resource('mypage', 'MyPageController', ['only' => ['index',]]);
-Route::resource('user', 'UserController', ['only' => ['show', ]]);
-Route::get('/{id}/followings', 'UserController@followings')->name('followings');
-Route::get('/{id}/followers', 'UserController@followers')->name('followers');
-Route::put('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
-Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
-
-
-
-
-// レシピ投稿
-Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
-Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
-Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/test'. 'HotpepperController@index')->name('test');
+// 習慣の記録に関するルーティング
 
 Route::resource('record', 'RecordController', ['only' => ['store', 'update', 'destroy']]);
 
@@ -136,8 +111,69 @@ Route::prefix("dinner")->name('dinner.')->group(function () {
     Route::post('update', 'RecordController@updateDinner')->name('update');
 });
 
-Route::get('/rakuten', 'RakutenController@get_rakuten_items')->name('rakuten');
-Route::get('/rakuten/index', 'RakutenController@index')->name('rakuten.index');
+// Settingに関するルーティング
+// Route::prefix('setting')->name('setting.')->group(function(){
+//     Route::get('/', 'SettingController@index')->name('index');
+
+// });
+
+
+
+// プロフィール
+Route::prefix('profile')->name('profile.')->middleware('auth')->group(function()
+{
+    Route::get('/{name}', 'ProfileController@show')->name('show');
+    Route::get('/{name}/likes', 'ProfileController@likes')->name('likes');
+    Route::get('/{name}/followings', 'ProfileController@followings')->name('followings');
+    Route::get('/{name}/followers', 'ProfileController@followers')->name('followers');
+    Route::post('/', 'RecordController@storeBreakfast')->name('store');
+});
+// 設定
+Route::prefix('setting')->name('setting.')->middleware('auth')->group(function()
+{
+    Route::get('/', 'SettingController@index')->name('index');
+    Route::post('/icon', 'SettingController@icon')->name('icon');
+});
+
+// プライバシー
+Route::prefix('privacy')->name('privacy.')->middleware('auth')->group(function () {
+    Route::get('/', 'PrivacyController@index')->name('index');
+});
+
+Route::resource('mypage', 'MyPageController', ['only' => ['index',]]);
+Route::resource('user', 'UserController', ['only' => ['show', ]]);
+
+/**
+ * フォロー、フォロワーに関するルーティング
+ */
+Route::get('/{id}/followings', 'UserController@followings')->name('followings');
+Route::get('/{id}/followers', 'UserController@followers')->name('followers');
+Route::put('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
+Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->middleware('auth');
+
+
+
+/**
+ * 投稿レシピページに関するルーティング
+ */
+Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+
+/**
+ * レシピの投稿に関するルーティング
+ */
+Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
+Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
+Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
+
+/**
+ * お店検索に関するルーティング
+ */
+// Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::get('shops/{page?}', 'SearchShopController@index')->name('shops.index');
+Route::get('shops/search', 'SearchShopController@search')->name('shops.search');
+
+
 
 /**
  * レシピページに関するルーティング
@@ -151,4 +187,17 @@ Route::prefix('recipes')->name('recipes.')->middleware('auth')->group(function()
     Route::put('/{recipe}/like', 'RecipeController@like')->name('like');
     Route::delete('/{recipe}/like', 'RecipeController@unlike')->name('unlike');
 
+});
+
+
+
+
+
+/**
+ * その他
+ */
+
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return view('welcome');
 });

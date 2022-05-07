@@ -1,13 +1,15 @@
-@extends('app')
-@section('content')
-    @include('components.navbar')
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            {{-- サイドバー --}}
-            @include('components.sidebar.mypage')
-            <main class="col-lg-10 main">
-                <h1>Settings</h1>
-            </main>
-        </div>
-    </div>
+@extends('layouts.app')
+@section('header')
+        @include('components.header.navbar', ['page' => 'home'])
+@endsection
+@section('aside')
+    @include('components.sidebar.mypage')
+@endsection
+@section('main')
+    <h1>Settings</h1>
+    {{-- <icon-register
+        endpoint="{{ route('setting.icon')}}"
+    >
+    </icon-register> --}}
+    <image-component></image-component>
 @endsection

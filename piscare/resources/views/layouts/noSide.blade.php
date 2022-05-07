@@ -25,10 +25,14 @@
     </head>
     <body>
         <div id="app">
-            @include('components.navbar')
-            <main class="main-layout">
-                @yield('main')
-            </main>
+            @yield('header')
+            <div class="container-fluid spacing-reset">
+                <div class="row spacing-reset justify-content-center">
+                    <main class="col-md-11 main-layout">
+                        @yield('main')
+                    </main>
+                </div>
+            </div>
         </div>
         <script src="{{ mix('js/app.js') }}"></script>
         <!-- JQuery -->

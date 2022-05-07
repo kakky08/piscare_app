@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+        App\Providers\ViewServiceProvider::class,
     ],
 
     /*
@@ -229,5 +231,7 @@ return [
         'rakuten_id' => env('RAKUTEN_APPLICATION_ID', false),
 
     ],
+
+
 
 ];
