@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('settings.index') }}">
+                <a class="nav-link {{-- {{  $page === 'setting' ? 'active' : '' }} --}}" href="{{ route('setting.index') }}">
                     <h3 class="ml-2"><i class="fas fa-cog"></i>Setting</h3>
                 </a>
             </li>

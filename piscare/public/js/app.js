@@ -2366,8 +2366,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -47553,6 +47551,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "material" },
     [
       _c(
         "draggable",
@@ -47569,49 +47568,56 @@ var render = function () {
         },
         _vm._l(_vm.texts, function (text, index) {
           return _c("div", { key: text.id }, [
-            _c("div", { staticClass: "row justify-content-around mb-4" }, [
-              _c("i", { staticClass: "fas fa-heart fa-xs mr-1 col-1 handler" }),
-              _vm._v(" "),
-              _c("input", {
-                attrs: {
-                  type: "hidden",
-                  name: "materials[" + index + "][postId]",
-                },
-                domProps: { value: _vm.postId },
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control col-4",
-                attrs: {
-                  type: "text",
-                  placeholder: "材料・調味料",
-                  name: "materials[" + index + "][materialName]",
-                },
-              }),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "form-control col-4",
-                attrs: {
-                  type: "text",
-                  placeholder: "分量",
-                  name: "materials[" + index + "][quantity]",
-                },
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-light col-1",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function ($event) {
-                      return _vm.del(index)
+            _c(
+              "div",
+              { staticClass: "row cols-4 spacing-reset material-form" },
+              [
+                _c("i", {
+                  staticClass:
+                    "fas fa-bars fa-xs col-1 handler material-form-icon",
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  attrs: {
+                    type: "hidden",
+                    name: "materials[" + index + "][postId]",
+                  },
+                  domProps: { value: _vm.postId },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control col",
+                  attrs: {
+                    type: "text",
+                    placeholder: "材料・調味料",
+                    name: "materials[" + index + "][materialName]",
+                  },
+                }),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control col",
+                  attrs: {
+                    type: "text",
+                    placeholder: "分量",
+                    name: "materials[" + index + "][quantity]",
+                  },
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn col-1 material-form-button",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.del(index)
+                      },
                     },
                   },
-                },
-                [_vm._v("×")]
-              ),
-            ]),
+                  [_vm._v("×")]
+                ),
+              ]
+            ),
           ])
         }),
         0
@@ -47621,7 +47627,7 @@ var render = function () {
         ? _c(
             "button",
             {
-              staticClass: "btn btn-primary col-auto mb-5",
+              staticClass: "btn col-auto button-default",
               attrs: { type: "button" },
               on: { click: _vm.add },
             },

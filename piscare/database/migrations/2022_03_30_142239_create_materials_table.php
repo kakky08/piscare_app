@@ -15,9 +15,9 @@ class CreateMaterialsTable extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('postRecipe_id')->unsigned();
-            $table->foreign('postRecipe_id')->references('id')->on('post_recipes')->onDelete('cascade');
-            $table->text('materialName');
+            $table->bigInteger('post_recipe_id')->unsigned();
+            $table->foreign('post_recipe_id')->references('id')->on('post_recipes')->onDelete('cascade');
+            $table->text('material_name');
             $table->text('quantity');
             $table->timestamps();
         });

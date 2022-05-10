@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Procedure extends Model
 {
     protected $fillable = [
-        'postRecipe_id',
+        'post_recipe_id',
         'order',
         'photo',
         'procedure'

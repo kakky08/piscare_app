@@ -1,19 +1,17 @@
 <template>
-    <div>
+    <div class="material">
         <draggable v-model="texts" :options="options" hendle=".handle" @end="onSort">
             <div v-for="(text, index) in texts" :key="text.id">
-                <div class="row justify-content-around mb-4">
-                    <!-- <button type="button" class="btn btn-light col-1 handle">▲</button> -->
-                    <i class="fas fa-heart fa-xs mr-1 col-1 handler" />
+                <div class="row cols-4 spacing-reset material-form">
+                    <i class="fas fa-bars fa-xs col-1 handler material-form-icon" />
                     <input type="hidden" :value="postId" :name="'materials[' + index +'][postId]'">
-                    <input type="text" class="form-control col-4" placeholder="材料・調味料" :name="'materials[' + index +'][materialName]'">
-                    <input type="text" class="form-control col-4" placeholder="分量" :name="'materials[' + index +'][quantity]'">
-                    <button type="button" class="btn btn-light col-1" @click="del(index)">×</button>
+                    <input type="text" class="form-control col" placeholder="材料・調味料" :name="'materials[' + index +'][materialName]'">
+                    <input type="text" class="form-control col" placeholder="分量" :name="'materials[' + index +'][quantity]'">
+                    <button type="button" class="btn col-1 material-form-button" @click="del(index)">×</button>
                 </div>
             </div>
         </draggable>
-        <button type="button" class="btn btn-primary col-auto mb-5" @click="add" v-if="!isTextMax">＋行を追加する</button>
-
+        <button type="button" class="btn col-auto button-default" @click="add" v-if="!isTextMax">＋行を追加する</button>
     </div>
 </template>
 
