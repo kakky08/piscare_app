@@ -8,7 +8,7 @@
                 <div class="row justify-content-around">
                     <p class="col-1">{{ index }}</p>
                     <i class="fas fa-heart fa-xs mr-1 col-1 handler" />
-                    <div class="col-4 ">
+                    <div class="col-4">
 
                         <div class="drop_area"
                         @dragenter="dragEnter"
@@ -18,7 +18,7 @@
                         :class="{enter: isEnter}">
                             ドロップエリア
                             <div v-if="url">
-                                <img :src="url">
+                                <img :src="url" :name="'image' + index">
                             </div>
                             <input class="image-input" type="file" title @change="uploadFile" ref="preview"/>
                             <!-- <img src="https://placehold.jp/320x240.png" alt=""> -->
@@ -35,7 +35,7 @@
         <div class="d-grid gap-2 col-6 mx-auto mb-5">
                 <button class="btn btn-success" type="button" @click="add" v-if="!isTextMax">＋行を追加する</button>
         </div>
-<div>
+    <div>
         <ul>
             <li v-for="image in images" :key="image.id">
                 {{ image.name }}
@@ -43,9 +43,9 @@
             </li>
         </ul>
     </div>
-    <div v-if="url">
+    <!-- <div v-if="url">
         <img :src="url">
-    </div>
+    </div> -->
     </div>
 </template>
 

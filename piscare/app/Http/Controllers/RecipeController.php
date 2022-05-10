@@ -19,7 +19,7 @@ class RecipeController extends Controller
         $recipes = Recipe::orderBy('created_at', 'desc')->paginate(12);
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');
-        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
+        return view('recipes.pages.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
     }
 
     /**

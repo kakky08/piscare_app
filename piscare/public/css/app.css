@@ -13,12 +13,38 @@
 */
 
 /*
+* ブランドカラー
+*/
+
+/*
 * 文字の大きさ
 */
 
 * {
-  color: #333;
   box-sizing: border-box;
+}
+
+.spacing-reset {
+  padding: 0;
+  margin: 0;
+}
+
+.container-spacing {
+  padding-top: 1rem;
+}
+
+.aside-layout {
+  background-color: #EEE;
+  padding: 24px 16px;
+  height: calc(100vh - 64px);
+}
+
+.main-layout {
+  padding: 3rem 1.5rem 2rem;
+}
+
+.header-color {
+  background-color: #FFE162;
 }
 
 .nav-header {
@@ -42,16 +68,136 @@
 }
 
 .nav-list li a:hover {
-  color: #666;
+  color: #91C483;
 }
 
-.sidebar {
-  background-color: #EEE;
-  padding: 24px 8px;
+/*
+* auth関連
+*/
+
+.auth-header {
+  margin-bottom: 4rem;
 }
 
-.main {
-  padding: 24px 16px;
+.auth-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.auth-card-body {
+  padding: 3rem;
+}
+
+.auth-form-group {
+  margin-bottom: 2rem;
+}
+
+.auth-form-group:last-child {
+  margin-bottom: 3rem;
+}
+
+.auth-button {
+  padding: 0.5rem 0;
+  color: #fff;
+  background-color: #91C483;
+}
+
+.auth-button:hover {
+  background-color: #FFE162;
+  color: #333;
+}
+
+.auth-button-social {
+  margin-bottom: 2rem;
+}
+
+.auth-button-social:hover {
+  background-color: #FFE162;
+  color: #333;
+}
+
+.auth-button-social-link {
+  padding: 0.5rem 0;
+  color: #fff;
+}
+
+.auth-button-social-link:hover {
+  background-color: #FFE162;
+}
+
+.auth-button-social-icon {
+  margin-right: 1rem;
+}
+
+.auth-button-google {
+  background-color: #DB4437;
+}
+
+.auth-button-google:hover {
+  color: #DB4437;
+}
+
+.auth-button-github {
+  background-color: #161415;
+}
+
+.auth-button-github:hover {
+  color: #161415;
+}
+
+.auth-button-twitter {
+  background-color: #1DA1F2;
+}
+
+.auth-button-twitter:hover {
+  color: #1DA1F2;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card-style {
+  width: 18rem;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+.card-style-image {
+  -o-object-fit: fill;
+     object-fit: fill;
+  height: 12rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-style-body {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.card-style-title {
+  flex-grow: 1;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.card-style-text {
+  margin-bottom: 1.5rem;
+}
+
+.card-style-button {
+  color: #fff;
+  background-color: #91C483;
+  margin-top: auto;
+}
+
+.card-style-button:hover {
+  background-color: #FFE162;
+  color: #333;
 }
 
 .button-basic {
@@ -66,10 +212,72 @@
 }
 
 .fish-color {
-  color: #1da1f2;
+  color: #ccc;
 }
 
-.red {
-  color: #1da1f2;
+.fish-color-first {
+  color: #62daff;
+}
+
+.fish-color-second {
+  color: #628eff;
+}
+
+.fish-color-third {
+  color: #ff6262;
+}
+
+.calender-button-group {
+  margin-bottom: 2rem;
+}
+
+.calender-button-group p {
+  margin-bottom: 0;
+  font-size: 1.4rem;
+}
+
+.calender-button {
+  background-color: #91C483;
+  color: #fff;
+}
+
+.calender-button:hover {
+  background-color: #FFE162;
+  color: #333;
+}
+
+.calender-table-row {
+  height: 80px;
+}
+
+.calender-table-header {
+  text-align: center;
+  margin-bottom: none;
+}
+
+.calender-table-data {
+  min-width: 80px;
+}
+
+.calender-fish-icon {
+  text-align: center;
+}
+
+.record-button-group {
+  margin-bottom: 2rem;
+}
+
+.shop-search-form {
+  margin-bottom: 2rem;
+}
+
+.shop-search-button {
+  background-color: #91C483;
+  color: #fff;
+}
+
+.shop-search-button:hover {
+  background-color: #FFE162;
+  color: #fff;
 }
 

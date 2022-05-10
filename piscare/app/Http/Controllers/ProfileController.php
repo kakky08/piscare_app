@@ -18,8 +18,8 @@ class ProfileController extends Controller
     public function likes($name)
     {
         $user = User::where('name', $name)->first();
-        $posts = $user->likes->sortByDesc('created_at');
-        return view('mypage.profile.like', compact('user', 'posts'));
+        $posts = $user->postLikes->sortByDesc('created_at');
+        return view('mypage.profile.likes', compact('user', 'posts'));
     }
 
     public function followings($name)
