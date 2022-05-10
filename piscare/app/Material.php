@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Material extends Model
 {
     protected $fillable = [
-        'postRecipe_id',
-        'materialName',
+        'post_recipe_id',
+        'material_name',
         'quantity',
     ];
 

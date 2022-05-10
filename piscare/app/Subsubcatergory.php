@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Subsubcatergory extends Model
 {
     protected $fillable = [
-        'categoryId',
-        'categoryName',
-        'parentCategoryId',
-        'searchCategoryId',
-        'searchRecipeId',
+        'category_id',
+        'category_name',
+        'parent_category_id',
+        'search_category_id',
+        'search_recipe_id',
     ];
 }

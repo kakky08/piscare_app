@@ -78,7 +78,7 @@ class MaterialCreateController extends Controller
      */
     public function edit($materialCreate)
     {
-        $materials = Material::where('postRecipe_id', $materialCreate)->get();
+        $materials = Material::where('post_recipe_id', $materialCreate)->get();
         $postId = $materialCreate;
 
         return view('postRecipe.materialCreate', compact('materials', 'postId'));

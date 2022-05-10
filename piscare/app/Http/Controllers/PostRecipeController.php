@@ -63,7 +63,7 @@ class PostRecipeController extends Controller
         $postId = $postRecipe->id;
         $materials = null;
 
-        return view('articles.postCreate', compact('title', 'postId', 'materials'));
+        return view('postRecipe.postCreate', compact('title', 'postId', 'materials'));
     }
 
     /**

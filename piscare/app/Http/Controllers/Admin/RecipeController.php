@@ -32,67 +32,69 @@ class RecipeController extends Controller
          * レシピカテゴリ(中カテゴリ)
          */
 
-        if (!$response->isOk())
-        {
-            return 'Error:' . $response->getMessage();
-        }
-        else
-        {
-            $results = $response['result'];
-            foreach ($results['medium'] as $key => $result)
-            {
-                if ($result['parentCategoryId'] === '11' || $result['parentCategoryId'] === '32')
-                {
-                    $categoryId = Subcatergory::where('categoryId', $result['categoryId'])->first();
+        // if (!$response->isOk())
+        // {
+        //     return 'Error:' . $response->getMessage();
+        // }
+        // else
+        // {
+        //     $results = $response['result'];
+        //     foreach ($results['medium'] as $key => $result)
+        //     {
+        //         if ($result['parentCategoryId'] === '11' || $result['parentCategoryId'] === '32')
+        //         {
 
-                    if (empty($categoryId))
-                    {
-                        Subcatergory::create([
-                            'categoryId' => $result['categoryId'],
-                            'categoryName' => $result['categoryName'],
-                            'parentCategoryId' => $result['parentCategoryId'],
-                            'searchCategoryId' => $result['parentCategoryId'] . $result['categoryId'],
-                            'searchRecipeId' => sprintf('%s-%s', $result['parentCategoryId'], $result['categoryId'])
-                        ]);
-                    }
-                }
-            }
-        }
+        //             $categoryId = Subcatergory::where('category_id', $result['categoryId'])->first();
+
+        //             if (empty($categoryId))
+        //             {
+        //                 Subcatergory::create([
+        //                     'category_id' => $result['categoryId'],
+        //                     'category_name' => $result['categoryName'],
+        //                     'parent_category_id' => $result['parentCategoryId'],
+        //                     'search_category_id' => $result['parentCategoryId'] . $result['categoryId'],
+        //                     'search_recipe_id' => sprintf('%s-%s', $result['parentCategoryId'], $result['categoryId'])
+        //                 ]);
+        //             }
+        //         }
+        //     }
+        // }
 
         /**
          * レシピカテゴリ(小カテゴリ)
          */
 
-        if (!$response->isOk())
-        {
-            return 'Error:' . $response->getMessage();
-        }
-        else
-        {
-            $results = $response['result'];
-            foreach ($results['small'] as $key => $result)
-            {
-                $subcategoryId = Subcatergory::where('categoryId', $result['parentCategoryId'])->first();
+        // if (!$response->isOk())
+        // {
+        //     return 'Error:' . $response->getMessage();
+        // }
+        // else
+        // {
+        //     $results = $response['result'];
+        //     foreach ($results['small'] as $key => $result)
+        //     {
+        //         $subcategoryId = Subcatergory::where('category_id', $result['parentCategoryId'])->first();
 
-                // 中カテゴリにparentCategoryIdがあれば実行
-                if (isset($subcategoryId))
-                {
-                    $is_subsubcategoryId = Subsubcatergory::where('categoryId', $result['categoryId'])->first();
-                    // 小カテゴリにcategoryIdがなければ実行
-                    if (empty($is_subsubcategoryId))
-                    {
-                        $subcatergorySearchId = Subcatergory::where('categoryId', $result['parentCategoryId'])->select('searchCategoryId', 'searchRecipeId')->first();
-                        Subsubcatergory::create([
-                            'categoryId' => $result['categoryId'],
-                            'categoryName' => $result['categoryName'],
-                            'parentCategoryId' => $result['parentCategoryId'],
-                            'searchCategoryId' => $subcatergorySearchId->searchCategoryId . $result['categoryId'],
-                            'searchRecipeId' => sprintf('%s-%s', $subcatergorySearchId->searchRecipeId, $result['categoryId'])
-                        ]);
-                    }
-                }
-            }
-        }
+        //         // 中カテゴリにparentCategoryIdがあれば実行
+        //         if (isset($subcategoryId))
+        //         {
+        //             $is_subsubcategoryId = Subsubcatergory::where('category_id', $result['categoryId'])->first();
+        //             // 小カテゴリにcategoryIdがなければ実行
+        //             if (empty($is_subsubcategoryId))
+        //             {
+        //                 $subcatergorySearchId = Subcatergory::where('category_id', $result['parentCategoryId'])->select('search_category_id', 'search_recipe_id')->first();
+        //                 Subsubcatergory::create([
+        //                     'category_id' => $result['categoryId'],
+        //                     'category_name' => $result['categoryName'],
+        //                     'parent_category_id' => $result['parentCategoryId'],
+        //                     'search_category_id' => $subcatergorySearchId->search_category_id . $result['categoryId'],
+        //                     'search_recipe_id' => sprintf('%s-%s', $subcatergorySearchId->search_recipe_id, $result['categoryId'])
+        //                 ]);
+        //             }
+        //         }
+        //     }
+        // }
+
 
 
         /**
@@ -103,11 +105,11 @@ class RecipeController extends Controller
          * 中カテゴリのレシピを取得
          */
 
-        $searchRecipes = Subcatergory::select('parentCategoryId', 'searchCategoryId', 'searchRecipeId')->get();
+        $searchRecipes = Subcatergory::select('parent_category_id', 'search_category_id', 'search_recipe_id')->get();
         foreach ($searchRecipes as $searchRecipe)
         {
             $response = $client->execute('RecipeCategoryRanking', array(
-                'categoryId' => $searchRecipe->searchRecipeId,
+                'category_id' => $searchRecipe->search_recipe_id,
             ));
 
             if (!$response->isOk())
@@ -125,8 +127,8 @@ class RecipeController extends Controller
                     {
                         Recipe::create([
                             'recipe_id' => $result['recipeId'],
-                            'category_id' => $searchRecipe->parentCategoryId,
-                            'search_category_id' => $searchRecipe->searchCategoryId,
+                            'category_id' => $searchRecipe->parent_category_id,
+                            'search_category_id' => $searchRecipe->search_category_id,
                             'title' => $result['recipeTitle'],
                             'url' => $result['recipeUrl'],
                             'food_image_url' => $result['foodImageUrl'],
@@ -138,7 +140,7 @@ class RecipeController extends Controller
                             'cost' => $result['recipeCost'],
                         ]);
 
-                        foreach ($result['recipeMaterial'] as $material)
+                        foreach ($result['recipeMaterial'] as $key => $material)
                         {
                             RecipeMaterial::create([
                                 'recipe_id' => $result['recipeId'],
@@ -149,18 +151,18 @@ class RecipeController extends Controller
                     }
                 }
             }
-            sleep(1);
+            sleep(2);
         }
 
         /**
          * 小カテゴリのレシピを取得
          */
 
-        $searchRecipes = Subsubcatergory::select('parentCategoryId', 'searchCategoryId', 'searchRecipeId')->get();
+        $searchRecipes = Subsubcatergory::select('parent_category_id', 'search_category_id', 'search_recipe_id')->get();
         foreach ($searchRecipes as $searchRecipe)
         {
             $response = $client->execute('RecipeCategoryRanking', array(
-                'categoryId' => $searchRecipe->searchRecipeId,
+                'category_id' => $searchRecipe->search_recipe_id,
             ));
 
             if (!$response->isOk())
@@ -179,8 +181,8 @@ class RecipeController extends Controller
                     {
                         Recipe::create([
                             'recipe_id' => $result['recipeId'],
-                            'category_id' => $searchRecipe->parentCategoryId,
-                            'search_category_id' => $searchRecipe->searchCategoryId,
+                            'category_id' => $searchRecipe->parent_category_id,
+                            'search_category_id' => $searchRecipe->search_category_id,
                             'title' => $result['recipeTitle'],
                             'url' => $result['recipeUrl'],
                             'food_image_url' => $result['foodImageUrl'],
