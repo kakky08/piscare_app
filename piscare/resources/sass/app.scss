@@ -24,6 +24,9 @@ $green-color: #91C483;
 // 赤
 $red-color: #FF6464;
 
+// 青
+$blue-color: #628eff;
+
 // 魚の色
 $fish-first-color: #62daff;
 $fish-second-color: #628eff;
@@ -419,7 +422,7 @@ $fontsize-nav: 1rem;
     }
 
     &-tag{
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
         >p {
             background-color: $secondary-color;
             color: $font-color;
@@ -439,7 +442,7 @@ $fontsize-nav: 1rem;
     margin-bottom: 2rem;
 
     &-form {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
 
         :nth-child(n) {
             margin-right: 1rem;
@@ -463,5 +466,42 @@ $fontsize-nav: 1rem;
                 color: $white-color;
             }
         }
+    }
+}
+
+.button-back{
+    background-color: $blue-color;
+    color: $white-color;
+    margin-bottom: 4rem;
+
+    &:hover {
+        background-color: $secondary-color;
+        color: $font-color;
+    }
+}
+
+.boundary-line{
+    margin-bottom: 4rem;
+}
+
+.alert-message{
+
+    &-success
+    {
+        background-color: $green-color;
+        opacity: 0.8;
+        color: $white-color;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    &-error {
+        background-color: $red-color;
+        color: $white-color;
+        position: relative;
+        padding: 0.5rem 1rem;
+        margin: 0 1rem 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
     }
 }
