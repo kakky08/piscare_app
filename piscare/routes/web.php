@@ -166,6 +166,12 @@ Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create'
 Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
 Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
 
+Route::get('materialCreate/1/data', 'MaterialCreateController@getDate')->name('materialCreate.data');
+Route::get('materialCreate/back/{materialCreate}', 'MaterialCreateController@back')->name('materialCreate.back');
+
+Route::get('users', function () {
+    return App\User::all();
+});
 /**
  * お店検索に関するルーティング
  */

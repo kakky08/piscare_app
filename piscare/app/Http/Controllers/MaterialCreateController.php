@@ -7,19 +7,6 @@ use Illuminate\Http\Request;
 
 class MaterialCreateController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {/*
-        $requests = $request;
-        $materials = $request->material;
-        $quantities = $request->quantity;
-        return view('materialtest', compact('materials', 'quantities', 'requests')); */
-        return view('postRecipe.materialCreate');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -37,26 +24,17 @@ class MaterialCreateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Material $material)
+    public function store(Request $request)
     {
-        /*  $material->material = $request->material;
-        $material->quantity = $request->quantity; */
-        // dd($request);
 
-        $materials = $request->materials;
-        foreach ($materials as $material) {
-            Material::create([
-                'postRecipe_id' => $material['postId'],
-                'materialName' => $material['materialName'],
-                'quantity' => $material['quantity'],
-            ]);
-        }
+        Material::create([
+            'post_recipe_id' => $request->store_postId,
+            'material_name' => $request->store_material,
+            'quantity' => $request->store_quantity,
+        ]);
 
 
-
-
-        // $postId = $request->postId;
-        return redirect()->route('home');
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->store_postId]);
     }
 
     /**
@@ -78,10 +56,10 @@ class MaterialCreateController extends Controller
      */
     public function edit($materialCreate)
     {
-        $materials = Material::where('post_recipe_id', $materialCreate)->get();
         $postId = $materialCreate;
-
-        return view('postRecipe.materialCreate', compact('materials', 'postId'));
+        $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
+        $count = 0;
+        return view('postRecipe.materialCreate', compact('materials', 'postId', 'count'));
     }
 
     /**
@@ -93,9 +71,19 @@ class MaterialCreateController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        $material->fill($request->all());
-        $material->save();
-        return redirect()->route('/');
+
+        Material::where('post_recipe_id' , $request->edit_postId)->delete();
+        $materials = $request->materials;
+        foreach ($materials as $material) {
+            Material::create([
+                'post_recipe_id' => $request->edit_postId,
+                'material_name' => $material['materialName'],
+                'quantity' => $material['quantity'],
+            ]);
+        }
+
+        // dd($request->edit_postId);
+        return redirect()->route('postRecipe.edit', ['postRecipe' => $request->edit_postId]);
     }
 
     /**
@@ -107,5 +95,22 @@ class MaterialCreateController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getData(){
+        $data = Material::where('post_recipe_id', 1)->get();
+        dd($data);
+        return $data;
+    }
+
+    /**
+     * 戻るボタンによる処理
+     *
+     * @param  int  $materialCreate
+     * @return \Illuminate\Http\Response
+     */
+
+    public function back($materialCreate){
+        return redirect()->route('postRecipe.edit', ['postRecipe' => $materialCreate]);
     }
 }

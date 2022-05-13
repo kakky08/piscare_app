@@ -9,6 +9,7 @@ import Vue from 'vue'
 import DatepickerComponent from './components/DatepickerComponent'
 import FollowButton from './components/FollowButton'
 import MaterialComponent from './components/MaterialComponent'
+import MaterialEdit from './components/MaterialEdit'
 import PostRecipeLike from './components/PostRecipeLike'
 import ProcedureComponent from './components/ProcedureComponent'
 import RecipeLike from './components/RecipeLike'
@@ -16,6 +17,7 @@ import RecordBreakfast from './components/RecordBreakfast'
 import TestComponent from './components/TestComponent'
 import IconRegister from './components/IconRegister'
 import ImageComponent from './components/ImageComponent'
+import CountupButton from './components/CountupButton'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -41,12 +43,14 @@ const app = new Vue({
         DatepickerComponent,
         FollowButton,
         MaterialComponent,
+        MaterialEdit,
         PostRecipeLike,
         ProcedureComponent,
         RecipeLike,
         RecordBreakfast,
         TestComponent,
         IconRegister,
-        ImageComponent
+        ImageComponent,
+        CountupButton
     }
 });

@@ -31,7 +31,6 @@ class PostRecipeNameController extends Controller
         $postRecipe->fill($request->all());
         $postRecipe->user_id = $request->user()->id;
         $postRecipe->save();
-
         $postId = $postRecipe->id;
 
 

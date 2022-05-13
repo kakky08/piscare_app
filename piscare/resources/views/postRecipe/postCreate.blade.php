@@ -25,8 +25,8 @@
                                 <ul>
                                     @foreach ($materials as $material)
                                         <li class="row row-cols-2 border-bottom recipe-register-form-material-list">
-                                                <h4 class="col recipe-register-form-material-name">材料{{ $i }}</h4>
-                                                <p class="col recipe-register-form-material-quantity">分量</p>
+                                                <h4 class="col recipe-register-form-material-name">{{ $material->material_name }}</h4>
+                                                <p class="col recipe-register-form-material-quantity">{{ $material->quantity }}</p>
                                         </li>
                                     @endforeach
                                 </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Material;
 use App\PostRecipe;
 use Illuminate\Http\Request;
 
@@ -61,9 +62,11 @@ class PostRecipeController extends Controller
 
         $title = $postRecipe->title;
         $postId = $postRecipe->id;
-        $materials = null;
 
-        return view('postRecipe.postCreate', compact('title', 'postId', 'materials'));
+        $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
+
+        $count = 0;
+        return view('postRecipe.postCreate', compact('title', 'postId', 'materials', 'count'));
     }
 
     /**
