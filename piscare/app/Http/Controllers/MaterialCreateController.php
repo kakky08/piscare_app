@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MaterialStoreRequest;
+use App\Http\Requests\MaterialUpdateRequest;
+use App\Http\Requests\PeopleRequest;
 use App\Material;
+use App\PostRecipe;
 use Illuminate\Http\Request;
 
 class MaterialCreateController extends Controller
@@ -24,7 +28,7 @@ class MaterialCreateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MaterialStoreRequest $request)
     {
 
         Material::create([
@@ -34,7 +38,7 @@ class MaterialCreateController extends Controller
         ]);
 
 
-        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->store_postId]);
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->store_postId])->with('completion-of-registration-material', '登録が完了しました。');
     }
 
     /**
@@ -57,9 +61,10 @@ class MaterialCreateController extends Controller
     public function edit($materialCreate)
     {
         $postId = $materialCreate;
+        $peoples = PostRecipe::where('id', $postId)->select('people')->first();
         $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
         $count = 0;
-        return view('postRecipe.materialCreate', compact('materials', 'postId', 'count'));
+        return view('postRecipe.materialCreate.app', compact('materials', 'postId', 'count', 'peoples'));
     }
 
     /**
@@ -69,7 +74,7 @@ class MaterialCreateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Material $material)
+    public function update(MaterialUpdateRequest $request, Material $material)
     {
 
         Material::where('post_recipe_id' , $request->edit_postId)->delete();
@@ -81,9 +86,8 @@ class MaterialCreateController extends Controller
                 'quantity' => $material['quantity'],
             ]);
         }
-
         // dd($request->edit_postId);
-        return redirect()->route('postRecipe.edit', ['postRecipe' => $request->edit_postId]);
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->edit_postId])->with('completion-of-registration-material', '更新が完了しました。');
     }
 
     /**
@@ -112,5 +116,21 @@ class MaterialCreateController extends Controller
 
     public function back($materialCreate){
         return redirect()->route('postRecipe.edit', ['postRecipe' => $materialCreate]);
+    }
+
+    /**
+     * 何人分の材料かを登録・更新する処理
+     *
+     * @param  int  $materialCreate
+     * @return \Illuminate\Http\Response
+     */
+
+    public function peopleUpdate(PeopleRequest $request){
+
+        $postRecipe =  PostRecipe::where('id', $request->post_id)->where('user_id', $request->user)->first();
+        $postRecipe->people = $request->update_people;
+        $postRecipe->save();
+
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->post_id])->with('completion-of-registration-people', '登録が完了しました。');
     }
 }

@@ -316,7 +316,7 @@
   font-size: 1rem;
 }
 .material-register-form-tag {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 .material-register-form-tag > p {
   background-color: #FFE162;
@@ -336,7 +336,7 @@
   margin-bottom: 2rem;
 }
 .material-form {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 .material-form :nth-child(n) {
   margin-right: 1rem;
@@ -355,5 +355,36 @@
 .material-form-button:hover {
   opacity: 0.7;
   color: #fff;
+}
+
+.button-back {
+  background-color: #628eff;
+  color: #fff;
+  margin-bottom: 4rem;
+}
+.button-back:hover {
+  background-color: #FFE162;
+  color: #333;
+}
+
+.boundary-line {
+  margin-bottom: 4rem;
+}
+
+.alert-message-success {
+  background-color: #91C483;
+  opacity: 0.8;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.alert-message-error {
+  background-color: #FF6464;
+  color: #fff;
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin: 0 1rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 }
 /*# sourceMappingURL=app.css.map */

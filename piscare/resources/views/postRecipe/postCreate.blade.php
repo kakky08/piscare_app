@@ -20,7 +20,11 @@
                             <div class="recipe-register-form-link">
                                 <h3 class="recipe-register-form-material">
                                     材料名
-                                    <small class="recipe-register-form-people">（人分）</small>
+                                    @if (empty($peoples))
+                                        <small class="recipe-register-form-people">（人分）</small>
+                                    @else
+                                        <small class="recipe-register-form-people">（{{ $peoples }}人分）</small>
+                                    @endif
                                 </h3>
                                 <ul>
                                     @foreach ($materials as $material)
