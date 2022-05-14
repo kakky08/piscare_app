@@ -332,7 +332,7 @@
 .recipe-register-form-button {
   background-color: #91C483;
   color: #fff;
-  padding: 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .recipe-register-form-button-layout {
@@ -427,6 +427,10 @@
 .material-form-button:hover {
   opacity: 0.7;
   color: #fff;
+}
+
+.material-form-button-margin {
+  margin-bottom: 3rem;
 }
 
 .button-back {

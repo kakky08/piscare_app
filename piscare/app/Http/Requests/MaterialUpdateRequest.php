@@ -25,7 +25,6 @@ class MaterialUpdateRequest extends FormRequest
     {
         return [
             'edit_postId' => 'required',
-            'materials' => 'required|array',
             'materials.*.materialName' => 'required|required_with:materials.*.quantity|max:30',
             'materials.*.quantity' => 'required|required_with:materials.*.materialName|max:30',
         ];
@@ -34,9 +33,8 @@ class MaterialUpdateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'materials' => '材料・調味料や分量',
-            'materials.*.materialName' => '材料・調味料',
-            'materials.*.quantity' => '分量'
+            'materials.*.materialName' => '材料の名前',
+            'materials.*.quantity' => '材料の分量'
         ];
     }
 }

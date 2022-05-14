@@ -168,7 +168,9 @@ Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create'
 
 Route::get('materialCreate/1/data', 'MaterialCreateController@getDate')->name('materialCreate.data');
 Route::get('materialCreate/back/{materialCreate}', 'MaterialCreateController@back')->name('materialCreate.back');
-Route::post('materialCreate/peopleUpdate', 'MaterialCreateController@peopleUpdate')->name('materialCreate.peopleUpdate');
+Route::post('materialCreate/peopleUpdate', 'MaterialCreateController@updatePeople')->name('materialCreate.updatePeople');
+Route::post('materialCreate/storeSeasoning', 'MaterialCreateController@storeSeasoning')->name('materialCreate.storeSeasoning');
+Route::post('materialCreate/updateSeasoning', 'MaterialCreateController@updateSeasoning')->name('materialCreate.updateSeasoning');
 
 Route::get('users', function () {
     return App\User::all();

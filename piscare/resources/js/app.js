@@ -18,6 +18,7 @@ import TestComponent from './components/TestComponent'
 import IconRegister from './components/IconRegister'
 import ImageComponent from './components/ImageComponent'
 import CountupButton from './components/CountupButton'
+import SeasoningEdit from './components/SeasoningEdit'
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -51,6 +52,7 @@ const app = new Vue({
         TestComponent,
         IconRegister,
         ImageComponent,
-        CountupButton
+        CountupButton,
+        SeasoningEdit
     }
 });

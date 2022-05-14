@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MaterialStoreRequest;
 use App\Http\Requests\MaterialUpdateRequest;
 use App\Http\Requests\PeopleRequest;
+use App\Http\Requests\SeasoningStoreRequest;
+use App\Http\Requests\SeasoningUpdateRequest;
 use App\Material;
 use App\PostRecipe;
+use App\Seasoning;
 use Illuminate\Http\Request;
 
 class MaterialCreateController extends Controller
@@ -34,7 +37,7 @@ class MaterialCreateController extends Controller
         Material::create([
             'post_recipe_id' => $request->store_postId,
             'material_name' => $request->store_material,
-            'quantity' => $request->store_quantity,
+            'quantity' => $request->store_material_quantity,
         ]);
 
 
@@ -63,8 +66,9 @@ class MaterialCreateController extends Controller
         $postId = $materialCreate;
         $peoples = PostRecipe::where('id', $postId)->select('people')->first();
         $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
+        $seasonings = Seasoning::where('post_recipe_id', $postId)->select('seasoning_name', 'quantity')->get();
         $count = 0;
-        return view('postRecipe.materialCreate.app', compact('materials', 'postId', 'count', 'peoples'));
+        return view('postRecipe.materialCreate.app', compact('materials', 'seasonings', 'postId', 'count', 'peoples'));
     }
 
     /**
@@ -79,14 +83,17 @@ class MaterialCreateController extends Controller
 
         Material::where('post_recipe_id' , $request->edit_postId)->delete();
         $materials = $request->materials;
-        foreach ($materials as $material) {
-            Material::create([
-                'post_recipe_id' => $request->edit_postId,
-                'material_name' => $material['materialName'],
-                'quantity' => $material['quantity'],
-            ]);
+        if(!empty($materials))
+        {
+            foreach ($materials as $material)
+            {
+                Material::create([
+                    'post_recipe_id' => $request->edit_postId,
+                    'material_name' => $material['materialName'],
+                    'quantity' => $material['quantity'],
+                ]);
+            }
         }
-        // dd($request->edit_postId);
         return redirect()->route('materialCreate.edit', ['materialCreate' => $request->edit_postId])->with('completion-of-registration-material', '更新が完了しました。');
     }
 
@@ -125,12 +132,43 @@ class MaterialCreateController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function peopleUpdate(PeopleRequest $request){
+    public function updatePeople(PeopleRequest $request){
 
         $postRecipe =  PostRecipe::where('id', $request->post_id)->where('user_id', $request->user)->first();
         $postRecipe->people = $request->update_people;
         $postRecipe->save();
 
         return redirect()->route('materialCreate.edit', ['materialCreate' => $request->post_id])->with('completion-of-registration-people', '登録が完了しました。');
+    }
+
+    public function storeSeasoning(SeasoningStoreRequest $request){
+
+        Seasoning::create([
+            'post_recipe_id' => $request->store_postId,
+            'seasoning_name' => $request->store_seasoning,
+            'quantity' => $request->store_seasoning_quantity,
+        ]);
+
+
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->store_postId])->with('completion-of-registration-seasoning', '登録が完了しました。');
+    }
+
+    public function updateSeasoning(SeasoningUpdateRequest $request){
+
+        Seasoning::where('post_recipe_id', $request->edit_postId)->delete();
+        $seasonings = $request->seasonings;
+        if(!empty($seasonings))
+        {
+            foreach ($seasonings as $seasoning)
+            {
+                Seasoning::create([
+                    'post_recipe_id' => $request->edit_postId,
+                    'seasoning_name' => $seasoning['seasoningName'],
+                    'quantity' => $seasoning['quantity'],
+                ]);
+            }
+        }
+        // dd($request->edit_postId);
+        return redirect()->route('materialCreate.edit', ['materialCreate' => $request->edit_postId])->with('completion-of-registration-seasoning', '更新が完了しました。');
     }
 }

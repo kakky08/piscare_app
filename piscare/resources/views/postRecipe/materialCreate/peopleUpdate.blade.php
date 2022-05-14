@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('materialCreate.peopleUpdate') }}" id="number-of-people-register-form">
+<form method="POST" action="{{ route('materialCreate.updatePeople') }}" id="number-of-people-register-form">
     @csrf
     <div class="row cols-3 material-register-form-tag">
         <div class="col-1"></div>
@@ -40,6 +40,6 @@
                 value={{ $peoples->people }}
             >
         @endif
-        <button type="submit" form="number-of-people-register-form" class="btn col-1 button-default">保存</button>
+        <button type="submit" form="number-of-people-register-form" class="btn col-1 button-default">人数を登録</button>
     </div>
 </form>
