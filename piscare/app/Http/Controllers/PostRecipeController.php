@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Material;
 use App\PostRecipe;
+use App\Seasoning;
 use Illuminate\Http\Request;
 
 class PostRecipeController extends Controller
@@ -65,9 +66,11 @@ class PostRecipeController extends Controller
         $peoples = $postRecipe->people;
 
         $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
+        $seasonings = Seasoning::where('post_recipe_id', $postId)->select('seasoning_name', 'quantity')->get();
+
 
         $count = 0;
-        return view('postRecipe.postCreate', compact('title', 'postId', 'materials', 'count', 'peoples'));
+        return view('postRecipe.postCreate', compact('title', 'postId', 'materials', 'seasonings', 'count', 'peoples'));
     }
 
     /**

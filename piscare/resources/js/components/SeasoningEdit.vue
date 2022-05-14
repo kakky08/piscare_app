@@ -7,15 +7,15 @@
                     <input
                         type="text"
                         class="form-control col"
-                        placeholder="材料の名前を入力してください"
-                        :name="'materials[' + index +'][materialName]'"
-                        :value="text.material_name"
+                        placeholder="調味料の名前を入力してください"
+                        :name="'seasonings[' + index +'][seasoningName]'"
+                        :value="text.seasoning_name"
                     >
                     <input
                         type="text"
                         class="form-control col"
-                        placeholder="材料の分量を入力してください"
-                        :name="'materials[' + index +'][quantity]'"
+                        placeholder="調味料の分量を入力してください"
+                        :name="'seasonings[' + index +'][quantity]'"
                         :value="text.quantity"
                     >
                     <button type="button" class="btn col-1 material-form-button" @click="del(index)">×</button>
@@ -33,14 +33,14 @@
             postId: {
                 type: Number
             },
-            materials :{
+            seasonings :{
                 type: Object
             },
         },
         data() {
             return {
                 postId: this.postId,
-                texts: [...this.materials],
+                texts: [...this.seasonings],
                 // texts:[],
                 maxTextCount: 30,
                 options: {

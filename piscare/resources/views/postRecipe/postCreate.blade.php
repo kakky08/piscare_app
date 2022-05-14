@@ -16,41 +16,61 @@
                 {{-- 材料リスト --}}
                 <div class="col spacing-reset">
                     <a href="{{ route('materialCreate.edit', ['materialCreate' => $postId])}}">
-                        @if ($materials)
-                            <div class="recipe-register-form-link">
+                        <div class="recipe-register-form-link">
+                            @if (count($materials) !== 0)
+                                    <h3 class="recipe-register-form-material">
+                                        材料名
+                                        @if (empty($peoples))
+                                            <small class="recipe-register-form-people">（人分）</small>
+                                        @else
+                                            <small class="recipe-register-form-people">（{{ $peoples }}人分）</small>
+                                        @endif
+                                    </h3>
+                                    <ul>
+                                        @foreach ($materials as $material)
+                                            <li class="row row-cols-2 border-bottom recipe-register-form-material-list">
+                                                    <h4 class="col recipe-register-form-material-name">{{ $material->material_name }}</h4>
+                                                    <p class="col recipe-register-form-material-quantity">{{ $material->quantity }}</p>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @else
                                 <h3 class="recipe-register-form-material">
                                     材料名
-                                    @if (empty($peoples))
-                                        <small class="recipe-register-form-people">（人分）</small>
-                                    @else
-                                        <small class="recipe-register-form-people">（{{ $peoples }}人分）</small>
-                                    @endif
+                                    <small class="recipe-register-form-people">（人分）</small>
                                 </h3>
                                 <ul>
-                                    @foreach ($materials as $material)
+                                    @for ($i = 1; $i < 4; $i++)
+                                        <li class="row row-cols-2 spacing-reset border-bottom recipe-register-form-material-list">
+                                                <h4 class="col">材料の名前{{ $i }}</h4>
+                                                <p class="col">材料の分量</p>
+                                        </li>
+                                    @endfor
+                                </ul>
+                            @endif
+                            @if (count($seasonings) !== 0)
+                                <h3 class="recipe-register-form-material">◼️調味料</h3>
+                                <ul>
+                                    @foreach ($seasonings as $seasoning)
                                         <li class="row row-cols-2 border-bottom recipe-register-form-material-list">
-                                                <h4 class="col recipe-register-form-material-name">{{ $material->material_name }}</h4>
-                                                <p class="col recipe-register-form-material-quantity">{{ $material->quantity }}</p>
+                                                <h4 class="col recipe-register-form-material-name">{{ $seasoning->seasoning_name }}</h4>
+                                                <p class="col recipe-register-form-material-quantity">{{ $seasoning->quantity }}</p>
                                         </li>
                                     @endforeach
                                 </ul>
-                            </div>
-                        @else
-                        <div class="recipe-register-form-link">
-                            <h3 class="recipe-register-form-material">
-                                材料名
-                                <small class="recipe-register-form-people">（人分）</small>
-                            </h3>
-                            <ul>
-                                @for ($i = 1; $i < 4; $i++)
-                                    <li class="row row-cols-2 spacing-reset border-bottom recipe-register-form-material-list">
-                                            <h4 class="col">材料{{ $i }}</h4>
-                                            <p class="col">分量</p>
-                                    </li>
-                                @endfor
-                            </ul>
+                            @else
+                                <h3 class="recipe-register-form-material">◼️調味料</h3>
+                                <ul>
+                                    @for ($j = 1; $j < 3; $j++)
+                                        <li class="row row-cols-2 spacing-reset border-bottom recipe-register-form-material-list">
+                                                <h4 class="col">調味料の名前{{ $j }}</h4>
+                                                <p class="col">調味料の分量</p>
+                                        </li>
+                                    @endfor
+                                </ul>
+                            @endif
                         </div>
-                        @endif
                     </a>
                 </div>
             </div>

@@ -23,8 +23,20 @@
             {{-- 区切り線 --}}
             <p class="border-bottom boundary-line"></p>
 
-            {{-- 最良の更新フォーム --}}
+            {{-- 材料の更新フォーム --}}
             @include('postRecipe.materialCreate.materialUpdate')
+
+            {{-- 区切り線 --}}
+            <p class="border-bottom boundary-line"></p>
+
+            {{-- 調味料の新規登録フォーム --}}
+            @include('postRecipe.materialCreate.seasoningRegister')
+
+            {{-- 区切り線 --}}
+            <p class="border-bottom boundary-line"></p>
+
+            {{-- 調味料の更新フォーム --}}
+            @include('postRecipe.materialCreate.seasoningUpdate')
 
         </div>
     </div>

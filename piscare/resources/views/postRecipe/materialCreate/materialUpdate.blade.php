@@ -1,7 +1,7 @@
 <div class="row cols-4 material-register-form-tag">
     <div class="col-1"></div>
-    <p class="col">材料・調味料</p>
-    <p class="col">分量</p>
+    <p class="col">材料の名前</p>
+    <p class="col">材料の分量</p>
     <div class="col-1"></div>
 </div>
 @if($errors->has('materials'))
@@ -39,6 +39,6 @@
     >
     </material-edit>
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button type="submit" class="btn col-auto button-default" form="edit-material">保存して閉じる</button>
+        <button type="submit" class="btn col-auto button-default material-form-button-margin" form="edit-material">材料についての情報を更新する</button>
     </div>
 </form>

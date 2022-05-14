@@ -94,8 +94,6 @@ $fontsize-nav: 1rem;
         background-color: $secondary-color;
         color: $font-color;
     }
-
-
 }
 
 .main-layout {
@@ -373,7 +371,7 @@ $fontsize-nav: 1rem;
     &-button{
         background-color: $green-color;
         color: $white-color;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
 
         &-layout {
             margin: 0 auto;
@@ -465,6 +463,10 @@ $fontsize-nav: 1rem;
                 opacity: 0.7;
                 color: $white-color;
             }
+        }
+
+        &-button-margin {
+            margin-bottom: 3rem;
         }
     }
 }

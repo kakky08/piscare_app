@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MaterialStoreRequest extends FormRequest
+class SeasoningUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,17 @@ class MaterialStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'store_postId' => 'required',
-            'store_material' => 'required|string|max:30',
-            'store_material_quantity' => 'required|max:30',
+            'edit_postId' => 'required',
+            'seasonings.*.seasoningName' => 'required|required_with:seasonings.*.quantity|max:30',
+            'seasonings.*.quantity' => 'required|required_with:seasonings.*.seasoningName|max:30',
         ];
     }
 
     public function attributes()
     {
         return [
-            'store_material' => '材料の名前',
-            'store_material_quantity' => '材料の分量'
+            'seasonings.*.seasoningName' => '調味料の名前',
+            'seasonings.*.quantity' => '調味料の分量'
         ];
     }
 }
