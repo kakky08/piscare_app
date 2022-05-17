@@ -315,8 +315,14 @@
 }
 
 .recipe-register-form-image {
-  width: 320px;
-  height: 240px;
+  width: 298px;
+  height: 447px;
+  margin: 0 auto;
+}
+
+.recipe-register-form-procedure-image {
+  width: 144px;
+  height: 144px;
 }
 
 .recipe-register-form-label {
@@ -464,5 +470,66 @@
   margin: 0 1rem 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+}
+
+/*
+* 画像のアプロードに関連
+*/
+
+.image-input-block {
+  display: inline-block;
+  text-align: center;
+}
+
+.image-input-box {
+  background-color: #eee;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.image-input-field {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-input-field > input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.image-input-field > p {
+  color: #aaa;
+  text-align: center;
+}
+
+.preview-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.preview-image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 1px solid #ccc;
+}
+
+.procedure-texarea {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 1rem;
 }
 

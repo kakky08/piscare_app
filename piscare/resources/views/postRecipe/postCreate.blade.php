@@ -11,7 +11,7 @@
             <div class="row row-cols-2 spacing-reset recipe-register-form-section border-bottom">
                 {{-- 料理画像 --}}
                 <div class="col spacing-reset">
-                    <img src="https://placehold.jp/320x240.png" alt="" class="recipe-register-form-image">
+                    <img src="https://placehold.jp/298x447.png" alt="" class="recipe-register-form-image">
                 </div>
                 {{-- 材料リスト --}}
                 <div class="col spacing-reset">
@@ -76,12 +76,12 @@
             </div>
 
             <h2 class="recipe-register-form-title">作り方</h2>
-            <a href="{{ route('editProcedure.edit', ['editProcedure' => $postId])}}">
+            <a href="{{ route('procedure.edit', ['procedure' => $postId])}}">
                 <div class="row cols-3 spacing-reset recipe-register-form-section recipe-register-form-link border-bottom">
                     <p class="col-1 spacing-reset recipe-register-form-order">1.</p>
                     {{-- 料理画像 --}}
                     <div class="col spacing-reset">
-                        <img src="https://placehold.jp/320x240.png" alt="" class="recipe-register-form-image">
+                        <img src="https://placehold.jp/144x144.png" alt="" class="recipe-register-form-procedure-image">
                     </div>
                     {{-- 作り方の説明 --}}
                     <div class="col spacing-reset">

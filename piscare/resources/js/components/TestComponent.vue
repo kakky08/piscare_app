@@ -32,6 +32,7 @@
                 </div>
             </div>
         </draggable>
+        <button type="button" @click="onSubmit" class="btn btn-success col-auto" form="form-procedure">保存して閉じる</button>
         <div class="d-grid gap-2 col-6 mx-auto mb-5">
                 <button class="btn btn-success" type="button" @click="add" v-if="!isTextMax">＋行を追加する</button>
         </div>
@@ -133,6 +134,7 @@
                 axios.patch(url, formData)
                     .then(response => {
                         location.href = this.endpoint;
+                        console.log(this.texts);
                     })
                     .catch(error => {
                         //  失敗時
