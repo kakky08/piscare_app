@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Recipe extends Model
 {
     protected $fillable = [
-        'recipe_id',
-        'category_id',
-        'search_category_id',
+        'recipeId',
+        'categoryId',
+        'searchCategoryId',
         'title',
         'url',
-        'food_image_url',
-        'medium_image_url',
-        'small_image_url',
+        'foodImageUrl',
+        'mediumImageUrl',
+        'smallImageUrl',
         'contributor',
         'description',
         'indication',

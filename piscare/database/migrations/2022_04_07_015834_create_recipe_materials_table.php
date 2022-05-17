@@ -15,7 +15,7 @@ class CreateRecipeMaterialsTable extends Migration
     {
         Schema::create('recipe_materials', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('recipe_id');
+            $table->integer('recipeId');
             $table->integer('order');
             $table->text('name');
             $table->timestamps();
