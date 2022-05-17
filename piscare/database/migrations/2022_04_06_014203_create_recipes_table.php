@@ -15,14 +15,14 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('recipe_id');
-            $table->integer('category_id');
-            $table->integer('search_category_id');
+            $table->unsignedInteger('recipeId');
+            $table->integer('categoryId');
+            $table->integer('searchCategoryId');
             $table->text('title');
             $table->text('url');
-            $table->text('food_image_url');
-            $table->text('medium_image_url');
-            $table->text('small_image_url');
+            $table->text('foodImageUrl');
+            $table->text('mediumImageUrl');
+            $table->text('smallImageUrl');
             $table->text('contributor');
             $table->text('description');
             $table->text('indication');

@@ -15,11 +15,11 @@ class CreateSubsubcatergoriesTable extends Migration
     {
         Schema::create('subsubcatergories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_id');
-            $table->text('category_name');
-            $table->integer('parent_category_id');
-            $table->integer('search_category_id');
-            $table->text('search_recipe_id');
+            $table->integer('categoryId');
+            $table->text('categoryName');
+            $table->integer('parentCategoryId');
+            $table->integer('searchCategoryId');
+            $table->text('searchRecipeId');
             $table->timestamps();
         });
     }
