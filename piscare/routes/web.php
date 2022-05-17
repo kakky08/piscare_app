@@ -164,7 +164,7 @@ Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'crea
 Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
 Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
 Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
-Route::resource('editProcedure', 'EditProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
+Route::resource('procedure', 'ProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
 
 Route::get('materialCreate/1/data', 'MaterialCreateController@getDate')->name('materialCreate.data');
 Route::get('materialCreate/back/{materialCreate}', 'MaterialCreateController@back')->name('materialCreate.back');
