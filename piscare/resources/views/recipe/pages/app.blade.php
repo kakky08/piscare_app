@@ -3,7 +3,7 @@
     @include('components.header.navbar')
 @endsection
 @section('aside')
-    @include('recipes.components.aside')
+    @include('recipe.components.aside')
 @endsection
 @section('main')
 <div class="row justify-content-between col-lg-12">
@@ -22,18 +22,24 @@
 </ul>
 
 {{-- カード --}}
-<div class="row justify-content-around mb-4">
-    @foreach ($recipes as $recipe)
-    <div class="card mb-4" style="width: 18rem;">
-        <img src={{ $recipe->food_image_url }} class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ $recipe->title }}</h5>
-            <p class="card-text">{{ $recipe->description }}</p>
-            <p></p>
-            <a href="{{ route('recipes.show', $recipe->id) }}" class="btn btn-primary">詳細</a>
+@foreach ($recipes as $key => $recipe)
+    @if ($key % 4 === 0)
+        <div class="row cols-4 spacing-reset card-content">
+    @endif
+            <div class="card col card-style">
+                <img src={{ $recipe->foodImageUrl }} class="card-img-top card-style-image" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title card-style-title">{{ $recipe->title }}</h5>
+                    <p class="card-text card-style-text">{{ $recipe->description }}</p>
+                    <a href="{{ route('recipe.show', $recipe->recipeId) }}" class="btn stretched-link card-style-button">詳細</a>
+                </div>
+            </div>
+    @if (($key + 1) % 4 === 0)
         </div>
-    </div>
-    @endforeach
+    @endif
+@endforeach
+
+
 </div>
 {{-- ページネーション --}}
 <nav class="pagination justify-content-center">

@@ -76,10 +76,10 @@ Route::prefix('admin')->middleware('auth:admin')->name('admin.')->group(function
  * 楽天レシピ取得に関するルーティング
  */
 
-Route::prefix('rakuten')->name('rakuten')->middleware('auth:admin')->group(function () {
-    Route::get('/', 'RakutenController@get_rakuten_items');
-    Route::get('/index', 'RakutenController@index')->name('.index');
-});
+// Route::prefix('rakuten')->name('rakuten')->middleware('auth:admin')->group(function () {
+//     Route::get('/', 'RakutenController@get_rakuten_items');
+//     Route::get('/index', 'RakutenController@index')->name('.index');
+// });
 
 /**
  * マイページに関するルーティング
@@ -187,17 +187,16 @@ Route::get('shops/search', 'SearchShopController@search')->name('shops.search');
 /**
  * レシピページに関するルーティング
  */
-Route::resource('recipes', 'RecipeController', ['only' => ['index', 'show']]);
-Route::prefix('recipes')->name('recipes.')->middleware('auth')->group(function()
+Route::prefix('recipe')->name('recipe.')->middleware('auth')->group(function()
 {
-    Route::get('/category/{recipe}/', 'RecipeController@category')->name('category');
     Route::get('/search', 'RecipeController@search')->name('search');
+    Route::get('/category/{recipe}/', 'RecipeController@category')->name('category');
     /** いいね機能のルーティング **/
     Route::put('/{recipe}/like', 'RecipeController@like')->name('like');
     Route::delete('/{recipe}/like', 'RecipeController@unlike')->name('unlike');
-
 });
 
+Route::resource('recipe', 'RecipeController', ['only' => ['index', 'show']]);
 
 
 

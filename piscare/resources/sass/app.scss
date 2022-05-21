@@ -217,11 +217,20 @@ $fontsize-nav: 1rem;
     margin-bottom: 2rem;
 }
 
+.card-content{
+    > div {
+        margin-right: 2rem;
+        :last-child{
+            margin-right: 0;
+        }
+    }
+}
 
 .card-style{
     width: 18rem;
     padding: 1rem;
     margin-bottom: 3rem;
+    margin-right:
 
     &-image{
         object-fit: fill;
@@ -514,7 +523,7 @@ $fontsize-nav: 1rem;
 }
 
 /*
-* 画像のアプロードに関連
+* 画像のアプロード関連
 */
 
 .image-input{
@@ -579,4 +588,37 @@ $fontsize-nav: 1rem;
     border: 1px solid #ccc;
     margin: 0 auto;
     padding: 1rem;
+}
+
+
+/*
+*  レシピ関連
+*/
+.recipe-aside{
+    &-color{
+        background-color: #eee;
+    }
+    &-category{
+        &-item{
+            border: none;
+        }
+        &-title{
+            border-bottom: 1px solid #fff;
+
+            > button{
+                box-shadow:none;
+                &:focus{
+                    box-shadow:none;
+                }
+                &:not(.collapsed){
+                    color: #333;
+                    background-color:#eee;
+                    box-shadow:none;
+                }
+            }
+        }
+        &-body{
+            border: none;
+        }
+    }
 }

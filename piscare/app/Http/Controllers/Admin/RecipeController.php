@@ -33,14 +33,20 @@ class RecipeController extends Controller
          * レシピカテゴリ(中カテゴリ)
          */
 
-        if (!$response->isOk()) {
+        if (!$response->isOk())
+        {
             return 'Error:' . $response->getMessage();
-        } else {
+        }
+        else
+        {
             $results = $response['result'];
-            foreach ($results['medium'] as $key => $result) {
-                if ($result['parentCategoryId'] === '11' || $result['parentCategoryId'] === '32') {
+            foreach ($results['medium'] as $key => $result)
+            {
+                if ($result['parentCategoryId'] === '11' || $result['parentCategoryId'] === '32')
+                {
                     $categoryId = Subcatergory::where('categoryId', $result['categoryId'])->first();
-                    if (empty($categoryId)) {
+                    if (empty($categoryId))
+                    {
                         Subcatergory::create([
                             'categoryId' => $result['categoryId'],
                             'categoryName' => $result['categoryName'],
@@ -57,17 +63,23 @@ class RecipeController extends Controller
          * レシピカテゴリ(小カテゴリ)
          */
 
-        if (!$response->isOk()) {
+        if (!$response->isOk())
+        {
             return 'Error:' . $response->getMessage();
-        } else {
+        }
+        else
+        {
             $results = $response['result'];
-            foreach ($results['small'] as $key => $result) {
+            foreach ($results['small'] as $key => $result)
+            {
                 $subcategoryId = Subcatergory::where('categoryId', $result['parentCategoryId'])->first();
                 // 中カテゴリにparentCategoryIdがあれば実行
-                if (isset($subcategoryId)) {
+                if (isset($subcategoryId))
+                {
                     $is_subsubcategoryId = Subsubcatergory::where('categoryId', $result['categoryId'])->first();
                     // 小カテゴリにcategoryIdがなければ実行
-                    if (empty($is_subsubcategoryId)) {
+                    if (empty($is_subsubcategoryId))
+                    {
                         $subcatergorySearchId = Subcatergory::where('categoryId', $result['parentCategoryId'])->select('searchCategoryId', 'searchRecipeId')->first();
                         Subsubcatergory::create([
                             'categoryId' => $result['categoryId'],
@@ -91,15 +103,20 @@ class RecipeController extends Controller
          */
 
         $searchRecipes = Subcatergory::select('parentCategoryId', 'searchCategoryId', 'searchRecipeId')->get();
-        foreach ($searchRecipes as $searchRecipe) {
+        foreach ($searchRecipes as $searchRecipe)
+        {
             $response = $client->execute('RecipeCategoryRanking', array(
                 'categoryId' => $searchRecipe->searchRecipeId,
             ));
-            if (!$response->isOk()) {
+            if (!$response->isOk())
+            {
                 return 'Error:' . $response->getMessage();
-            } else {
+            }
+            else
+            {
                 $results = $response['result'];
-                foreach ($results as $result) {
+                foreach ($results as $result)
+                {
                     $recipeId = Recipe::where('recipeId', $result['recipeId'])->first();
                     // レシピがなかったら実行
                     if (empty($recipeId)) {
@@ -118,7 +135,8 @@ class RecipeController extends Controller
                             'cost' => $result['recipeCost'],
                         ]);
 
-                        foreach ($result['recipeMaterial'] as $material) {
+                        foreach ($result['recipeMaterial'] as $key => $material)
+                        {
                             RecipeMaterial::create([
                                 'recipeId' => $result['recipeId'],
                                 'order' => $key,
@@ -136,15 +154,20 @@ class RecipeController extends Controller
          */
 
         $searchRecipes = Subsubcatergory::select('parentCategoryId', 'searchCategoryId', 'searchRecipeId')->get();
-        foreach ($searchRecipes as $searchRecipe) {
+        foreach ($searchRecipes as $searchRecipe)
+        {
             $response = $client->execute('RecipeCategoryRanking', array(
                 'categoryId' => $searchRecipe->searchRecipeId,
             ));
-            if (!$response->isOk()) {
+            if (!$response->isOk())
+            {
                 return 'Error:' . $response->getMessage();
-            } else {
+            }
+            else
+            {
                 $results = $response['result'];
-                foreach ($results as $result) {
+                foreach ($results as $result)
+                {
                     $recipeId = Recipe::where('recipeId', $result['recipeId'])->first();
                     // レシピがなかったら実行
                     if (empty($recipeId)) {
@@ -163,7 +186,8 @@ class RecipeController extends Controller
                             'cost' => $result['recipeCost'],
                         ]);
 
-                        foreach ($result['recipeMaterial'] as $key => $material) {
+                        foreach ($result['recipeMaterial'] as $key => $material)
+                        {
                             RecipeMaterial::create([
                                 'recipeId' => $result['recipeId'],
                                 'order' => $key,

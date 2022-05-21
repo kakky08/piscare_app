@@ -9,7 +9,7 @@
 
             <ul class="nav justify-content-end nav-list">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('recipes.index') }}">レシピ検索</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('recipe.index') }}">レシピ検索</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('postRecipe.index') }}">投稿レシピ</a>

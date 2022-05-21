@@ -169,17 +169,22 @@
   margin-bottom: 2rem;
 }
 
+.card-content > div {
+  margin-right: 2rem;
+}
+
+.card-content > div :last-child {
+  margin-right: 0;
+}
+
 .card-style {
   width: 18rem;
   padding: 1rem;
   margin-bottom: 3rem;
-}
-
-.card-style-image {
-  -o-object-fit: fill;
-     object-fit: fill;
-  height: 12rem;
-  margin-bottom: 1.5rem;
+  margin-right: .card-style -image;
+  margin-right-object-fit: fill;
+  margin-right-height: 12rem;
+  margin-right-margin-bottom: 1.5rem;
 }
 
 .card-style-body {
@@ -473,7 +478,7 @@
 }
 
 /*
-* 画像のアプロードに関連
+* 画像のアプロード関連
 */
 
 .image-input-block {
@@ -531,5 +536,39 @@
   border: 1px solid #ccc;
   margin: 0 auto;
   padding: 1rem;
+}
+
+/*
+*  レシピ関連
+*/
+
+.recipe-aside-color {
+  background-color: #eee;
+}
+
+.recipe-aside-category-item {
+  border: none;
+}
+
+.recipe-aside-category-title {
+  border-bottom: 1px solid #fff;
+}
+
+.recipe-aside-category-title > button {
+  box-shadow: none;
+}
+
+.recipe-aside-category-title > button:focus {
+  box-shadow: none;
+}
+
+.recipe-aside-category-title > button:not(.collapsed) {
+  color: #333;
+  background-color: #eee;
+  box-shadow: none;
+}
+
+.recipe-aside-category-body {
+  border: none;
 }
 

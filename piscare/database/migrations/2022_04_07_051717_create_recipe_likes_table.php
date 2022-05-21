@@ -17,8 +17,8 @@ class CreateRecipeLikesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->bigInteger('recipe_id')->unsigned();
-            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->bigInteger('recipe_id');
+            $table->foreign('recipe_id')->references('recipeId')->on('recipes')->onDelete('cascade');
             $table->timestamps();
         });
     }
