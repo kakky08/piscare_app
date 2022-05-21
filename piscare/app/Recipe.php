@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Recipe extends Model
 {
@@ -22,6 +23,12 @@ class Recipe extends Model
         'cost',
     ];
 
+    public function recipeMaterial(): HasMany
+    {
+        return $this->hasMany('App\RecipeMaterial','recipeId', 'recipeId');
+    }
+
+
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'likes')->withTimestamps();
@@ -36,6 +43,6 @@ class Recipe extends Model
 
     public function getCountLikesAttribute(): int
     {
-        return $this->likes->count();
+        return $this->recipe_likes->count();
     }
 }

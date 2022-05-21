@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
+use App\RecipeMaterial;
 use App\Subcatergory;
 use App\Subsubcatergory;
 use Illuminate\Http\Request;
@@ -16,31 +17,10 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::orderBy('created_at', 'desc')->paginate(12);
+        $recipes = Recipe::orderBy('created_at', 'desc')->paginate(20);
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');
-        return view('recipes.pages.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return view('recipe.pages.app', compact('recipes', 'subcategories', 'subsubcategories'));
     }
 
     /**
@@ -51,46 +31,29 @@ class RecipeController extends Controller
      */
     public function show($recipe)
     {
-        $recipe = Recipe::where('id', $recipe)->first();
+        $recipe = Recipe::where('recipeId', $recipe)->first();
+        $materials = $recipe->recipeMaterial->sortByDesc('order');
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');
-        return view('recipes.detail', compact('recipe', 'subcategories', 'subsubcategories'));
+        return view('recipe.pages.detail', compact('recipe', 'materials', 'subcategories', 'subsubcategories'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * レシピ名検索
      *
      * @param  int  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function destroy($recipe)
+
+    public function search(Request $request)
     {
+        $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orWhere('description', 'LIKE', "%request->search%")->orderBy('created_at', 'desc')->paginate(20);
+        $subcategories = Subcatergory::all()->sortBy('id');
+        $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        return view('recipe.pages.app', compact('recipes', 'subcategories', 'subsubcategories'));
 
     }
-
     /**
      * カテゴリ検索
      *
@@ -99,10 +62,10 @@ class RecipeController extends Controller
      */
     public function category($recipe)
     {
-        $recipes = Recipe::where('search_category_id', 'LIKE', "$recipe%")->orderBy('created_at', 'desc')->paginate(12);;
-        $subcategories = Subcatergory::all()->sortBy('id');
-        $subsubcategories = Subsubcatergory::all()->sortBy('id');
-        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
+        // $recipes = Recipe::where('searchCategoryId', 'LIKE', "$recipe%")->orderBy('created_at', 'desc')->paginate(12);;
+        // $subcategories = Subcatergory::all()->sortBy('id');
+        // $subsubcategories = Subsubcatergory::all()->sortBy('id');
+        // return view('recipes.pages.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
     }
 
     /**
@@ -111,14 +74,19 @@ class RecipeController extends Controller
      * @param  int  $recipe
      * @return \Illuminate\Http\Response
      */
-    public function search(Request $request)
-    {
-        $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orderBy('created_at', 'desc')->paginate(12);;
-        $subcategories = Subcatergory::all()->sortBy('id');
-        $subsubcategories = Subsubcatergory::all()->sortBy('id');
-        return view('recipes.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
-    }
+    /* public function search(Request $request)
+    { */
+        // dd($search);
+    //     $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orderBy('created_at', 'desc')->paginate(12);
+    //     $subcategories = Subcatergory::all()->sortBy('id');
+    //     $subsubcategories = Subsubcatergory::all()->sortBy('id');
+    //     return view('recipes.pages.recipe', compact('recipes', 'subcategories', 'subsubcategories'));
+    /* } */
 
+
+    /**
+     * いいね機能
+     */
     public function like(Request $request, Recipe $recipe)
     {
         $recipe->likes()->detach($request->user()->id);
@@ -139,4 +107,6 @@ class RecipeController extends Controller
             'countLikes' => $recipe->count_likes,
         ];
     }
+
+
 }

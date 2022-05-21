@@ -10,7 +10,7 @@ class RecipeMaterial extends Model
 
     public function recipe(): BelongsTo
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->belongsTo('App\Recipe', 'recipeId', 'recipeId');
     }
 
     protected $fillable = [
