@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Recipe extends Model
 {
     protected $fillable = [
-        'recipeId',
+        'id',
         'categoryId',
         'searchCategoryId',
         'title',
@@ -23,15 +24,20 @@ class Recipe extends Model
         'cost',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function recipeMaterial(): HasMany
     {
-        return $this->hasMany('App\RecipeMaterial','recipeId', 'recipeId');
+        return $this->hasMany('App\RecipeMaterial' , 'recipeId', 'id');
     }
 
 
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'likes')->withTimestamps();
+        return $this->belongsToMany('App\User', 'recipe_likes')->withTimestamps();
     }
 
     public function isLikedBy(?User $user): bool
@@ -43,6 +49,6 @@ class Recipe extends Model
 
     public function getCountLikesAttribute(): int
     {
-        return $this->recipe_likes->count();
+        return $this->likes->count();
     }
 }

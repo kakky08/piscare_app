@@ -2901,7 +2901,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    initiallsLikedBy: {
+    initialIsLikedBy: {
       type: Boolean,
       "default": false
     },
@@ -2919,7 +2919,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      isLikedBy: this.initiallsLikedBy,
+      isLikedBy: this.isLikedBy,
       countLikes: this.initialCountLikes
     };
   },
@@ -48479,7 +48479,7 @@ var render = function () {
       { staticClass: "btn m-0 p-1 shadow-none", attrs: { type: "button" } },
       [
         _c("i", {
-          staticClass: "fas fa-heart mr-1 text-danger",
+          staticClass: "fas fa-heart mr-1",
           class: { "text-danger": this.isLikedBy },
           on: { click: _vm.clickLike },
         }),
