@@ -161,16 +161,18 @@ Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'crea
 /**
  * レシピの投稿に関するルーティング
  */
-Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
-Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
-Route::resource('procedure', 'ProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
 
 Route::get('materialCreate/1/data', 'MaterialCreateController@getDate')->name('materialCreate.data');
 Route::get('materialCreate/back/{materialCreate}', 'MaterialCreateController@back')->name('materialCreate.back');
 Route::post('materialCreate/peopleUpdate', 'MaterialCreateController@updatePeople')->name('materialCreate.updatePeople');
 Route::post('materialCreate/storeSeasoning', 'MaterialCreateController@storeSeasoning')->name('materialCreate.storeSeasoning');
 Route::post('materialCreate/updateSeasoning', 'MaterialCreateController@updateSeasoning')->name('materialCreate.updateSeasoning');
+
+Route::resource('post', 'PostController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::resource('registerName', 'PostRecipeNameController', ['only' => ['create', 'store']]);
+Route::resource('materialCreate', 'MaterialCreateController', ['only' => ['create', 'edit', 'index', 'store', 'update']]);
+Route::resource('procedure', 'ProcedureController', ['only' => ['create', 'edit', 'update', 'store', 'index' ]]);
+
 
 Route::get('users', function () {
     return App\User::all();

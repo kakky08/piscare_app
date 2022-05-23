@@ -15,7 +15,7 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Recipe $recipe)
     {
         $recipes = Recipe::orderBy('created_at', 'desc')->paginate(20);
         $subcategories = Subcatergory::all()->sortBy('id');
@@ -31,7 +31,7 @@ class RecipeController extends Controller
      */
     public function show($recipe)
     {
-        $recipe = Recipe::where('recipeId', $recipe)->first();
+        $recipe = Recipe::where('id', $recipe)->first();
         $materials = $recipe->recipeMaterial->sortByDesc('order');
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');

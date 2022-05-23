@@ -31,7 +31,8 @@
                 <div class="card-body">
                     <h5 class="card-title card-style-title">{{ $recipe->title }}</h5>
                     <p class="card-text card-style-text">{{ $recipe->description }}</p>
-                    <a href="{{ route('recipe.show', $recipe->recipeId) }}" class="btn stretched-link card-style-button">詳細</a>
+                    <p>{{ $recipe->count_likes}}</p>
+                    <a href="{{ route('recipe.show', $recipe->id) }}" class="btn stretched-link card-style-button">詳細</a>
                 </div>
             </div>
     @if (($key + 1) % 4 === 0)

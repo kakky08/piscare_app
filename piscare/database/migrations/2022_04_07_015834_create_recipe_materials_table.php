@@ -16,7 +16,7 @@ class CreateRecipeMaterialsTable extends Migration
         Schema::create('recipe_materials', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('recipeId');
-            $table->foreign('recipeId')->references('recipeId')->on('recipes')->onDelete('cascade');
+            $table->foreign('recipeId')->references('id')->on('recipes')->onDelete('cascade');
             $table->integer('order');
             $table->text('name');
             $table->timestamps();

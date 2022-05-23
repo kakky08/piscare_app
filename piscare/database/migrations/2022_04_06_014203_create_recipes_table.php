@@ -14,7 +14,7 @@ class CreateRecipesTable extends Migration
     public function up()
     {
         Schema::create('recipes', function (Blueprint $table) {
-            $table->bigInteger('recipeId')->primary();
+            $table->bigInteger('id')->primary();
             $table->integer('categoryId');
             $table->integer('searchCategoryId');
             $table->text('title');

@@ -117,11 +117,12 @@ class RecipeController extends Controller
                 $results = $response['result'];
                 foreach ($results as $result)
                 {
-                    $recipeId = Recipe::where('recipeId', $result['recipeId'])->first();
+                    $recipeId = Recipe::where('id', $result['recipeId'])->first();
                     // レシピがなかったら実行
                     if (empty($recipeId)) {
+                        $recipeId = $result['recipeId'];
                         Recipe::create([
-                            'recipeId' => $result['recipeId'],
+                            'id' => $recipeId,
                             'categoryId' => $searchRecipe->parentCategoryId,
                             'searchCategoryId' => $searchRecipe->searchCategoryId,
                             'title' => $result['recipeTitle'],
@@ -168,11 +169,12 @@ class RecipeController extends Controller
                 $results = $response['result'];
                 foreach ($results as $result)
                 {
-                    $recipeId = Recipe::where('recipeId', $result['recipeId'])->first();
+                    $recipeId = Recipe::where('id', $result['recipeId'])->first();
                     // レシピがなかったら実行
                     if (empty($recipeId)) {
+                        $recipeId = $result['recipeId'];
                         Recipe::create([
-                            'recipeId' => $result['recipeId'],
+                            'id' => $recipeId,
                             'categoryId' => $searchRecipe->parentCategoryId,
                             'searchCategoryId' => $searchRecipe->searchCategoryId,
                             'title' => $result['recipeTitle'],

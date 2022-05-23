@@ -11,16 +11,14 @@
     <h1 class="h2 col-10 mb-0">レシピ</h1>
     <button type="button" class="btn col-2 button-basic">新しいレシピを投稿する</button>
 </div>
-{{-- ソート --}}
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">新着順</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">人気順</a>
-    </li>
-</ul>
 
+<recipe-like
+    :initial-is-liked-by='@json($recipe->isLikedBy(Auth::user()))'
+    :initial-count-likes='@json($recipe->count_likes)'
+    :authorized='@json(Auth::check())'
+    endpoint="{{ route('recipe.like', ['recipe' => $recipe->id]) }}"
+>
+</recipe-like>
 {{-- <p>{{ $recipe->title }}</p> --}}
 @foreach ($materials as $material)
     <p>{{ $material->name }}</p>
