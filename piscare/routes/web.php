@@ -180,9 +180,11 @@ Route::get('users', function () {
 /**
  * お店検索に関するルーティング
  */
-// Route::resource('shops', 'SearchShopController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
-Route::get('shops/{page?}', 'SearchShopController@index')->name('shops.index');
-Route::get('shops/search', 'SearchShopController@search')->name('shops.search');
+Route::prefix('shops')->name('shops.')->middleware('auth')->group(function(){
+
+    Route::get('/', 'ShopController@index')->name('index');
+    Route::get('/search', 'ShopController@search')->name('search');
+});
 
 
 

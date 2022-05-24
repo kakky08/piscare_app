@@ -37,6 +37,7 @@ class ShopController extends Controller
                 'large_service_area' => 'SS10',
                 'large_area' => 'Z011',
                 'format' => 'json',
+                'order' => 4
             ],
         ];
 
@@ -58,6 +59,7 @@ class ShopController extends Controller
                     'large_area' => 'Z011',
                     'start' => (10 * ($i - 1)) + 1,
                     'format' => 'json',
+                    'order' => 4
                 ],
             ];
 

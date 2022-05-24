@@ -48,7 +48,7 @@ class RecipeController extends Controller
 
     public function search(Request $request)
     {
-        $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orWhere('description', 'LIKE', "%request->search%")->orderBy('created_at', 'desc')->paginate(20);
+        $recipes = Recipe::where('title', 'LIKE', "%$request->search%")->orWhere('description', 'LIKE', "%$request->search%")->orderBy('created_at', 'desc')->paginate(20);
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');
         return view('recipe.pages.app', compact('recipes', 'subcategories', 'subsubcategories'));

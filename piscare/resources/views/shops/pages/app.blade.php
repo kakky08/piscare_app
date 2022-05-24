@@ -9,13 +9,23 @@
 {{-- <h1 class="h2">お店検索</h1> --}}
 
 {{-- 検索フォーム --}}
+@if($errors->has('keyword'))
+    <div class="row cols-3 spacing-reset">
+        <p class="col alert-message-error">※{{ $errors->first('keyword') }}</p>
+    </div>
+@endif
+@if($errors->has('area'))
+    <div class="row cols-3 spacing-reset">
+        <p class="col alert-message-error">※{{ $errors->first('area') }}</p>
+    </div>
+@endif
 <form method="GET" action="{{ route('shops.search') }}" class="row shop-search-form" >
     <div class="col-4">
-        <input type="text" name="search" class="form-control"  placeholder="キーワード">
+        <input type="text" name="keyword" class="form-control"  placeholder="店名">
     </div>
     <div class="col-4">
         <select class="form-select" name='area'>
-            <option selected>エリアを選択する</option>
+            <option selected value="">エリアを選択する</option>
             @foreach ($areas as $area)
                 <option value="{{ $area->code }}">{{ $area->name }}</option>
             @endforeach
@@ -28,13 +38,13 @@
 
 {{-- カード --}}
 <div class="row justify-content-between spacing-reset">
-    @foreach ($results as $result)
+    @foreach ($shops as $shop)
         <div class="card col-lg-3 card-style">
-            <img src="{{ $result->shop_image }}" class="card-img-top card-style-image" alt="...">
+            <img src="{{ $shop->shop_image }}" class="card-img-top card-style-image" alt="...">
             <div class="card-body card-style-body">
-                <h5 class="card-title card-style-title">{{ $result->name }}</h5>
-                <p class="card-text card-style-text">{{ $result->catch }}</p>
-                <a href="{{ $result->catch }}" class="btn stretched-link card-style-button">店舗詳細</a>
+                <h5 class="card-title card-style-title">{{ $shop->name }}</h5>
+                <p class="card-text card-style-text">{{ $shop->catch }}</p>
+                <a href="{{ $shop->shop_url }}" class="btn stretched-link card-style-button">店舗詳細</a>
             </div>
         </div>
     @endforeach
@@ -42,7 +52,7 @@
 </div>
 {{-- ページネーション --}}
 <nav class="pagination justify-content-center">
-    {{ $results->appends(request()->query())->links() }}
+    {{ $shops->appends(request()->query())->links() }}
 </nav>
 {{-- @include('shops.pagination') --}}
 @endsection
