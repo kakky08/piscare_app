@@ -71,7 +71,7 @@ class ProcedureController extends Controller
         $postId = $editProcedure;
         $path = asset('storage/');
 
-        return view('postRecipe.procedureCreate.app', compact('procedures', 'postId', 'path'));
+        return view('postRecipe.create.procedure.app', compact('procedures', 'postId', 'path'));
     }
 
     /**

@@ -4,8 +4,6 @@ namespace App;
 
 use App\Mail\BareMail;
 use App\Notifications\PasswordResetNotification;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -50,9 +48,9 @@ class User extends Authenticatable
     /**
      * 投稿レシピとのリレーション
      */
-    public function postRecipe():HasMany
+    public function post():HasMany
     {
-        return $this->hasMany('App\PostRecipe');
+        return $this->hasMany('App\Post');
     }
 
     public function followers():BelongsToMany
@@ -65,10 +63,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
     }
 
-    public function postLikes():BelongsToMany
+    /* public function postLikes():BelongsToMany
     {
-        return $this->belongsToMany('App\postRecipe', 'post_recipe_likes')->withTimestamps();
-    }
+        return $this->belongsToMany('App\postRecipe', 'post_likes')->withTimestamps();
+    } */
 
     public function isFollowedBy(?User $user):bool
     {

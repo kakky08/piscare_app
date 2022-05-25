@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Material;
+use App\Post;
 use App\PostRecipe;
 use App\Seasoning;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class PostRecipeController extends Controller
      */
     public function index()
     {
-        $recipes = PostRecipe::paginate(12);
-        return view('postRecipe.postRecipe', compact('recipes'));
+        $recipes = Post::orderBy('updated_at', 'desc')->paginate(20);
+        return view('postRecipe.pages.app', compact('recipes'));
     }
 
     /**
@@ -47,9 +48,10 @@ class PostRecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($postRecipe)
     {
-        //
+        $recipe = Post::where('id', $postRecipe)->first();
+        return view('postRecipe.pages.detail', compact('recipe'));
     }
 
     /**
@@ -58,19 +60,19 @@ class PostRecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostRecipe $postRecipe)
+    public function edit($postRecipe, Post $post)
     {
 
-        $title = $postRecipe->title;
-        $postId = $postRecipe->id;
-        $peoples = $postRecipe->people;
+        $title = $post->title;
+        $postId = $postRecipe;
+        $peoples = $post->people;
 
         $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
         $seasonings = Seasoning::where('post_recipe_id', $postId)->select('seasoning_name', 'quantity')->get();
 
 
         $count = 0;
-        return view('postRecipe.postCreate', compact('title', 'postId', 'materials', 'seasonings', 'count', 'peoples'));
+        return view('postRecipe.create.post', compact('title', 'postId', 'materials', 'seasonings', 'count', 'peoples'));
     }
 
     /**
@@ -94,5 +96,29 @@ class PostRecipeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * いいね機能
+     */
+    public function like(Request $request, Post $post)
+    {
+        $post->likes()->detach($request->user()->id);
+        $post->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $post->id,
+            'countLikes' => $post->count_likes,
+        ];
+    }
+
+    public function unlike(Request $request, Post $post)
+    {
+        $post->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $post->id,
+            'countLikes' => $post->count_likes,
+        ];
     }
 }

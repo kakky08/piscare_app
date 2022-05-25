@@ -156,7 +156,13 @@ Route::delete('user/{id}/follow', 'UserController@follow')->name('follow')->midd
 /**
  * 投稿レシピページに関するルーティング
  */
-Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'create', 'edit', 'store', 'destroy']]);
+Route::prefix('post')->name('post.')->middleware('auth')->group(function () {
+    /** いいね機能のルーティング **/
+    Route::put('/{post}/like', 'PostRecipeController@like')->name('like');
+    Route::delete('/{post}/like', 'PostRecipeController@unlike')->name('unlike');
+});
+
+Route::resource('postRecipe', 'PostRecipeController', ['only' => ['index', 'show', 'edit']]);
 
 /**
  * レシピの投稿に関するルーティング

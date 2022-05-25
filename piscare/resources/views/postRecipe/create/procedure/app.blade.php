@@ -9,16 +9,16 @@
             <a class="btn button-back" href="{{ route('materialCreate.back', ['materialCreate' => $postId]) }}">>>戻る</a>
             <br />
             {{-- 登録完了メッセージ --}}
-            @include('postRecipe.procedureCreate.successMessage')
+            @include('postRecipe.create.procedure.successMessage')
 
             {{-- 手順の新規登録フォーム --}}
-            @include('postRecipe.procedureCreate.procedureRegister')
+            @include('postRecipe.create.procedure.procedureRegister')
 
             {{-- 区切り線 --}}
             <p class="border-bottom boundary-line"></p>
 
             {{-- 手順の更新フォーム --}}
-            @include('postRecipe.procedureCreate.procedureUpdate')
+            @include('postRecipe.create.procedure.procedureUpdate')
 
         </div>
     </div>

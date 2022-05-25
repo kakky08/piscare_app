@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class PostRecipe extends Model
+class Post extends Model
 {
     protected $fillable = [
+        'id',
         'title',
         'image',
         'people',
@@ -22,13 +23,18 @@ class PostRecipe extends Model
 
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'post_recipe_likes')->withTimestamps();
+        return $this->belongsToMany('App\User', 'post_likes')->withTimestamps();
     }
 
-    public function isPostLikedBy(?User $user): bool
+    public function isLikedBy(?User $user): bool
     {
         return $user
-            ? (bool)$this->post_recipe_likes->where('id', $user->id)->count()
+            ? (bool)$this->likes->where('id', $user->id)->count()
             : false;
+    }
+
+    public function getCountLikesAttribute(): int
+    {
+        return $this->likes->count();
     }
 }

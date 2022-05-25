@@ -20,20 +20,23 @@
 
     {{-- カード --}}
     <div class="row justify-content-around mb-4">
-        @foreach ($recipes as $recipe)
         <div class="card mb-4" style="width: 18rem;">
             <img src="" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ $recipe->user->name }}</h5>
-                <p class="card-text">{{ $recipe->people }}</p>
+                {{-- <p class="card-text">{{ $recipe->people }}</p> --}}
+                <p class="card-text">{{ $recipe->title }}</p>
+                {{-- {{dd($recipe->id)}} --}}
+                <post-like
+                    :initial-is-liked-by='@json($recipe->isLikedBy(Auth::user()))'
+                    :initial-count-likes='@json($recipe->count_likes)'
+                    :authorized='@json(Auth::check())'
+                    endpoint="{{ route('post.like', ['post' => $recipe->id]) }}"
+                >
+                </post-like>
                 <p></p>
-                <a href="" class="btn btn-primary">詳細</a>
             </div>
         </div>
-        @endforeach
     </div>
-    {{-- ページネーション --}}
-    <nav class="pagination justify-content-center">
-        {{ $recipes->links() }}
-    </nav>
+
 @endsection
