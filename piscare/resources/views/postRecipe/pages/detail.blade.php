@@ -24,6 +24,7 @@
             <img src="" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ $recipe->user->name }}</h5>
+                <a href="{{ route('profile.show', ['name' => $recipe->user->name])}}">{{ $recipe->user->name }}</a>
                 {{-- <p class="card-text">{{ $recipe->people }}</p> --}}
                 <p class="card-text">{{ $recipe->title }}</p>
                 {{-- {{dd($recipe->id)}} --}}

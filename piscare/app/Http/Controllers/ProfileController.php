@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 
+
     public function show($name)
     {
         $user = User::where('name', $name)->first();
-        $posts = $user->postRecipe->sortByDesc('created_at');
+        $posts = $user->post->sortByDesc('created_at');
         return view('mypage.profile.show', compact('user', 'posts'));
     }
 
