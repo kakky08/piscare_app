@@ -7,10 +7,21 @@
 @endsection
 @section('main')
 <div class="row justify-content-between col-lg-12">
+    <button type="button" onClick="history.back()">戻る</button>
     {{-- タイトル --}}
-    <h1 class="h2 col-10 mb-0">レシピ</h1>
-    <button type="button" class="btn col-2 button-basic">新しいレシピを投稿する</button>
+    <h2 class="h2 col-10 mb-0">{{ $recipe->title }}</h2>
+    <img src="{{ $recipe->foodImageUrl }}" alt="{{ $recipe->title }}">
+    <p>投稿者 ： {{ $recipe->contributor }}</p>
+    <p>所要時間 : {{ $recipe->indication }}</p>
+    <p>費用 ： {{ $recipe->cost }}</p>
+    <p>材料・調味料</p>
+    <ul>
+        @foreach ($materials as $material)
+            <li>{{ $material->name }}</li>
+        @endforeach
+    </ul>
 </div>
+
 
 <recipe-like
     :initial-is-liked-by='@json($recipe->isLikedBy(Auth::user()))'
@@ -19,9 +30,6 @@
     endpoint="{{ route('recipe.like', ['recipe' => $recipe->id]) }}"
 >
 </recipe-like>
-{{-- <p>{{ $recipe->title }}</p> --}}
-@foreach ($materials as $material)
-    <p>{{ $material->name }}</p>
-@endforeach
 
+<a href="{{ $recipe->url }}" class="btn btn-danger">作り方はこちらから</a>
 @endsection
