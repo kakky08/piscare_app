@@ -459,6 +459,31 @@
 /*
 *  レシピ関連
 */
+.recipe-card-image {
+  height: 190px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+.recipe-card-title {
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+.recipe-card-text {
+  height: 110px;
+  margin-bottom: 1rem;
+}
+.recipe-card-like {
+  margin-bottom: 1rem;
+}
+.recipe-card-like > i {
+  display: inline-block;
+  margin-right: 0.5rem;
+  color: #FF6464;
+}
+.recipe-card-like > p {
+  display: inline-block;
+}
 .recipe-aside-color {
   background-color: #eee;
 }
