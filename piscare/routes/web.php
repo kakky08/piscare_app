@@ -138,6 +138,7 @@ Route::prefix('setting')->name('setting.')->middleware('auth')->group(function()
 // プライバシー
 Route::prefix('privacy')->name('privacy.')->middleware('auth')->group(function () {
     Route::get('/', 'PrivacyController@index')->name('index');
+    Route::post('/update', 'PrivacyController@update')->name('update');
 });
 
 Route::resource('mypage', 'MyPageController', ['only' => ['index',]]);
