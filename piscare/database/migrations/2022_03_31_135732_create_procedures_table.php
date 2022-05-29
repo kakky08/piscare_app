@@ -16,7 +16,7 @@ class CreateProceduresTable extends Migration
         Schema::create('procedures', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('post_recipe_id')->unsigned();
-            $table->foreign('post_recipe_id')->references('id')->on('post_recipes')->onDelete('cascade');
+            $table->foreign('post_recipe_id')->references('id')->on('posts')->onDelete('cascade');
             $table->integer('order');
             $table->text('photo')->nullable();
             $table->text('procedure');

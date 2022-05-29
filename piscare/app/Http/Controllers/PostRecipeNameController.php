@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRecipeNameRequest;
-use App\PostRecipe;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class PostRecipeNameController extends Controller
      */
     public function create()
     {
-        return view('postRecipe.nameRegister');
+        return view('postRecipe.create.name');
     }
 
     /**
@@ -26,7 +26,7 @@ class PostRecipeNameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRecipeNameRequest $request, PostRecipe $postRecipe)
+    public function store(PostRecipeNameRequest $request, Post $postRecipe)
     {
         $postRecipe->fill($request->all());
         $postRecipe->user_id = $request->user()->id;

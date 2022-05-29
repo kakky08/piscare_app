@@ -14,8 +14,8 @@ class Procedure extends Model
         'procedure'
     ];
 
-    public function postRecipe(): BelongsTo
+    public function post(): BelongsTo
     {
-        return $this->belongsTo('App\PostRecipe');
+        return $this->belongsTo('App\Post');
     }
 }

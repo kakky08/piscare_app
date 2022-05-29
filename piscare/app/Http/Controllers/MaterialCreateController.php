@@ -8,6 +8,7 @@ use App\Http\Requests\PeopleRequest;
 use App\Http\Requests\SeasoningStoreRequest;
 use App\Http\Requests\SeasoningUpdateRequest;
 use App\Material;
+use App\Post;
 use App\PostRecipe;
 use App\Seasoning;
 use Illuminate\Http\Request;
@@ -64,11 +65,11 @@ class MaterialCreateController extends Controller
     public function edit($materialCreate)
     {
         $postId = $materialCreate;
-        $peoples = PostRecipe::where('id', $postId)->select('people')->first();
+        $peoples = Post::where('id', $postId)->select('people')->first();
         $materials = Material::where('post_recipe_id', $postId)->select('material_name', 'quantity')->get();
         $seasonings = Seasoning::where('post_recipe_id', $postId)->select('seasoning_name', 'quantity')->get();
         $count = 0;
-        return view('postRecipe.materialCreate.app', compact('materials', 'seasonings', 'postId', 'count', 'peoples'));
+        return view('postRecipe.create.material.app', compact('materials', 'seasonings', 'postId', 'count', 'peoples'));
     }
 
     /**
@@ -134,7 +135,7 @@ class MaterialCreateController extends Controller
 
     public function updatePeople(PeopleRequest $request){
 
-        $postRecipe =  PostRecipe::where('id', $request->post_id)->where('user_id', $request->user)->first();
+        $postRecipe =  Post::where('id', $request->post_id)->where('user_id', $request->user)->first();
         $postRecipe->people = $request->update_people;
         $postRecipe->save();
 
