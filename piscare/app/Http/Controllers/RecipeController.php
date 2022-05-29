@@ -32,7 +32,7 @@ class RecipeController extends Controller
     public function show($recipe)
     {
         $recipe = Recipe::where('id', $recipe)->first();
-        $materials = $recipe->recipeMaterial->sortByDesc('order');
+        $materials = $recipe->recipeMaterial->sortBy('order');
         $subcategories = Subcatergory::all()->sortBy('id');
         $subsubcategories = Subsubcatergory::all()->sortBy('id');
         return view('recipe.pages.detail', compact('recipe', 'materials', 'subcategories', 'subsubcategories'));
