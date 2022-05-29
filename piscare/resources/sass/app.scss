@@ -594,31 +594,59 @@ $fontsize-nav: 1rem;
 /*
 *  レシピ関連
 */
-.recipe-aside{
-    &-color{
-        background-color: #eee;
-    }
-    &-category{
-        &-item{
-            border: none;
+.recipe{
+    &-card{
+        &-image{
+            height: 190px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
         }
         &-title{
-            border-bottom: 1px solid #fff;
-
-            > button{
-                box-shadow:none;
-                &:focus{
-                    box-shadow:none;
-                }
-                &:not(.collapsed){
-                    color: #333;
-                    background-color:#eee;
-                    box-shadow:none;
-                }
+            height: 50px;
+            margin-bottom: 0.5rem;
+        }
+        &-text{
+            height: 110px;
+            margin-bottom: 1rem;
+        }
+        &-like{
+            margin-bottom: 1rem;
+            > i {
+                display: inline-block;
+                margin-right: 0.5rem;
+                color: $red-color;
+            }
+            > p {
+                display: inline-block;
             }
         }
-        &-body{
-            border: none;
+    }
+    &-aside{
+        &-color{
+            background-color: #eee;
+        }
+        &-category{
+            &-item{
+                border: none;
+            }
+            &-title{
+                border-bottom: 1px solid #fff;
+
+                > button{
+                    box-shadow:none;
+                    &:focus{
+                        box-shadow:none;
+                    }
+                    &:not(.collapsed){
+                        color: #333;
+                        background-color:#eee;
+                        box-shadow:none;
+                    }
+                }
+            }
+            &-body{
+                border: none;
+            }
         }
     }
 }
