@@ -7,9 +7,7 @@ jobs:
       - run: echo "Hello World"
       - checkout
       - run: sudo composer self-update --1
-      - run:
-        working_directory: src
-        command: composer install -n --prefer-dist
+      - run: composer install -n --prefer-dist
       - run: npm ci
       - run: npm run dev
       - run:
